@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b25">
+  <title>DammPulse | Conocimiento industrial</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">D</span><span>DAMM<span class="brand-light">PULSE</span><small>CONOCIMIENTO INDUSTRIAL</small></span></a>
+    <span class="demo-tag">PROTOTIPO · DATOS SIMULADOS</span>
+  </header>
+  <main class="layout">
+    <section class="welcome">
+      <div><p class="eyebrow">CENTRO DE CONOCIMIENTO</p><h1>El conocimiento experto,<br><em>al alcance de todos.</em></h1><p class="intro">Consulta máquinas, aprende procedimientos y encuentra soluciones documentadas en un solo lugar.</p></div>
+      <div class="welcome-orb" aria-hidden="true"><span>DP</span></div>
+    </section>
+    <section class="stats" aria-label="Indicadores de demostración">
+      <article><span>Máquinas</span><strong>12</strong><small>en catálogo demo</small></article>
+      <article><span>Procedimientos</span><strong>28</strong><small>documentos de ejemplo</small></article>
+      <article><span>Incidencias</span><strong>07</strong><small>casos simulados</small></article>
+      <article><span>Conocimiento</span><strong>24/7</strong><small>consulta disponible</small></article>
+    </section>
+    <section class="section-heading"><div><p class="eyebrow">EXPLORAR</p><h2>¿Qué necesitas?</h2></div><span class="section-note">Selecciona un área para empezar</span></section>
+    <section class="module-grid">
+      <a class="module-card featured" href="#machines"><span class="module-icon">⌘</span><span class="module-label">01 / EQUIPOS</span><h3>Máquinas</h3><p>Fichas técnicas, instrucciones y acceso mediante QR.</p><span class="card-arrow">↗</span></a>
+      <a class="module-card" href="#incidents"><span class="module-icon">⚙</span><span class="module-label">02 / SOPORTE</span><h3>Averías</h3><p>Incidencias conocidas y soluciones validadas.</p><span class="card-arrow">↗</span></a>
+      <a class="module-card" href="#learning"><span class="module-icon">◎</span><span class="module-label">03 / FORMACIÓN</span><h3>Aprender</h3><p>Microcontenidos para nuevas incorporaciones.</p><span class="card-arrow">↗</span></a>
+      <a class="module-card" href="#experts"><span class="module-icon">✳</span><span class="module-label">04 / EXPERIENCIA</span><h3>Expertos</h3><p>Transforma experiencia práctica en conocimiento útil.</p><span class="card-arrow">↗</span></a>
+    </section>
+    <section class="content-grid">
+      <article class="panel" id="machines"><div class="panel-heading"><div><p class="eyebrow">CATÁLOGO</p><h2>Máquinas destacadas</h2></div><span class="live-dot">DEMO</span></div><div id="machine-list" class="machine-list"></div></article>
+      <article class="panel" id="incidents"><div class="panel-heading"><div><p class="eyebrow">BASE DE CONOCIMIENTO</p><h2>Últimas incidencias</h2></div></div><div id="incident-list" class="incident-list"></div></article>
+    </section>
+    <section class="bottom-grid">
+      <article class="panel learning" id="learning"><p class="eyebrow">FORMACIÓN RÁPIDA</p><h2>Aprende haciendo.</h2><p>Pequeñas cápsulas para consultar antes de realizar una tarea. El contenido definitivo deberá ser validado por personal autorizado.</p><button class="primary-button" id="learning-button">Ver cápsula de ejemplo <span>→</span></button><p id="learning-message" class="inline-message" aria-live="polite"></p></article>
+      <article class="panel expert" id="experts"><p class="eyebrow">CONOCIMIENTO EXPERTO</p><h2>La experiencia no se pierde.</h2><p>En una futura versión, un experto podrá aportar audio o vídeo. La IA preparará un borrador que deberá revisarse y aprobarse antes de publicarse.</p><span class="workflow">APORTAR <b>→</b> TRANSCRIBIR <b>→</b> VALIDAR <b>→</b> COMPARTIR</span></article>
+    </section>
+    <footer><span>DAMMPULSE</span><span>Prototipo académico · No utilizar como instrucción operativa real</span></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
