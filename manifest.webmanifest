@@ -1,10 +1,20 @@
 {
+  "id": "./",
   "name": "DammPulse 360",
   "short_name": "DammPulse",
   "description": "Plataforma de conocimiento, formación y soporte industrial",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f6f1",
-  "theme_color": "#142b25"
+  "orientation": "portrait-primary",
+  "background_color": "#f4f3ed",
+  "theme_color": "#172a24",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
