@@ -1,0 +1,9 @@
+{
+  "name": "DammPulse",
+  "short_name": "DammPulse",
+  "description": "Prototipo de conocimiento y formación industrial",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f6f1",
+  "theme_color": "#142b25"
+}
