@@ -1,13 +1,15 @@
-const CACHE="dammpulse-static-v4";
-const FILES=["./","./index.html","./styles.css","./app.js","./manifest.webmanifest","./icon.svg"];
-self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting())));
-self.addEventListener("activate",event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+/* DammPulse service worker — app shell rápido y actualización segura */
+const CACHE="dammpulse-static-v5";
+const CORE=["./","./index.html","./styles.css","./app.js","./manifest.webmanifest","./icon.svg"];
+self.addEventListener("install",event=>event.waitUntil((async()=>{const cache=await caches.open(CACHE);await cache.addAll(CORE);await self.skipWaiting()})()));
+self.addEventListener("activate",event=>event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>k.startsWith("dammpulse-static-")&&k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim()})()));
 self.addEventListener("fetch",event=>{
- if(event.request.method!=="GET")return;
- const url=new URL(event.request.url);
- if(url.origin!==location.origin)return;
- event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request).then(response=>{
-   if(response.ok&&url.pathname.includes("/damm-pulse/")){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy))}
-   return response;
- }).catch(()=>caches.match("./index.html"))));
+ const request=event.request;if(request.method!=="GET")return;
+ const url=new URL(request.url);if(url.origin!==self.location.origin)return;
+ if(request.mode==="navigate"){
+  event.respondWith((async()=>{try{const response=await fetch(request);if(response.ok){const cache=await caches.open(CACHE);cache.put("./index.html",response.clone())}return response}catch{return (await caches.match("./index.html"))||new Response("Sin conexión. Comprueba la red y vuelve a intentarlo.",{status:503,headers:{"Content-Type":"text/plain; charset=utf-8"}})}})());return;
+ }
+ if([".js",".css",".webmanifest",".svg"].some(ext=>url.pathname.endsWith(ext))||url.pathname.endsWith("/")){
+  event.respondWith((async()=>{const cached=await caches.match(request);if(cached)return cached;try{const response=await fetch(request);if(response.ok){const cache=await caches.open(CACHE);cache.put(request,response.clone())}return response}catch{return new Response("",{status:503})}})());
+ }
 });
