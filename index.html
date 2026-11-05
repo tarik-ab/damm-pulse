@@ -1,31 +1,45 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#102b25"><meta name="description" content="DammPulse: prototipo de conocimiento y formación industrial.">
-  <title>DammPulse | Conocimiento industrial</title><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b25">
+  <meta name="description" content="DammPulse 360: plataforma de conocimiento, formación y soporte industrial.">
+  <title>DammPulse 360 | Industrial Knowledge Platform</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#inicio"><span class="brand-mark">D</span><span>DAMM<span class="brand-light">PULSE</span><small>KNOWLEDGE HUB</small></span></a>
-      <div class="side-caption">ESPACIO DE TRABAJO</div>
+      <a class="brand" href="#home"><span class="brand-mark">D</span><span>DAMM<span class="brand-light">PULSE</span><small>INDUSTRIAL KNOWLEDGE 360</small></span></a>
+      <div class="side-caption">PLATAFORMA</div>
       <nav class="main-nav" aria-label="Navegación principal">
-        <a href="#inicio" data-view="inicio" class="nav-link active"><span>⌂</span> Inicio</a>
-        <a href="#maquinas" data-view="maquinas" class="nav-link"><span>⌘</span> Máquinas <b>3</b></a>
-        <a href="#averias" data-view="averias" class="nav-link"><span>⚙</span> Averías</a>
-        <a href="#formacion" data-view="formacion" class="nav-link"><span>◎</span> Formación</a>
-        <a href="#expertos" data-view="expertos" class="nav-link"><span>✳</span> Conocimiento experto</a>
-        <a href="#asistente" data-view="asistente" class="nav-link"><span>✧</span> DAM Bot <i>DEMO</i></a>
+        <a href="#home" data-view="home" class="nav-link active"><span>⌂</span> Inicio</a>
+        <a href="#machines" data-view="machines" class="nav-link"><span>▦</span> Equipos y QR <b>04</b></a>
+        <a href="#incidents" data-view="incidents" class="nav-link"><span>◉</span> Incidencias</a>
+        <a href="#academy" data-view="academy" class="nav-link"><span>▤</span> Academia</a>
+        <a href="#knowledge" data-view="knowledge" class="nav-link"><span>✳</span> Conocimiento experto</a>
+        <a href="#products" data-view="products" class="nav-link"><span>✦</span> Producto Damm</a>
+        <a href="#assistant" data-view="assistant" class="nav-link"><span>✧</span> DAM Bot <i>DEMO</i></a>
       </nav>
-      <div class="sidebar-bottom"><div class="profile"><div class="avatar">DP</div><div><strong>Equipo de proyecto</strong><small>Acceso de demostración</small></div></div><div class="side-disclaimer">Prototipo académico · Datos ficticios</div></div>
+      <div class="sidebar-bottom">
+        <div class="profile"><div class="avatar">DP</div><div><strong>Equipo de proyecto</strong><small>Entorno de demostración</small></div></div>
+        <div class="side-disclaimer">Proyecto académico · No oficial</div>
+      </div>
     </aside>
     <main class="main-area">
-      <header class="topbar"><button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button><div class="crumb">DAMMPULSE <span>/</span> <strong id="current-section">Inicio</strong></div><div class="top-actions"><span class="demo-tag"><span class="pulse"></span> ENTORNO DEMO</span><span class="top-avatar">DP</span></div></header>
+      <header class="topbar">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button>
+        <div class="crumb">DAMMPULSE 360 <span>/</span> <strong id="current-section">Inicio</strong></div>
+        <div class="top-actions"><span class="demo-tag"><span class="pulse"></span> DEMO CONTROLADA</span><span class="top-avatar">DP</span></div>
+      </header>
       <div id="view" class="view" tabindex="-1"></div>
-      <footer class="footer"><span>DAMMPULSE <b>·</b> PROTOTIPO ACADÉMICO</span><span>No utilizar como instrucción operativa real.</span></footer>
+      <footer class="footer"><span>DAMMPULSE 360 <b>·</b> PROYECTO ACADÉMICO</span><span>Información operativa real: solo fuentes aprobadas.</span></footer>
     </main>
   </div>
-  <div id="modal-root"></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="modal-root"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="app.js"></script>
-</body></html>
+</body>
+</html>
