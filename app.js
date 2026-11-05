@@ -9,17 +9,18 @@ const machines = [
 ];
 const products = [
  ["Estrella Damm","La cerveza Mediterránea","Lager","https://www.damm.com/es/cervezas"],
- ["Bohemia","Cerveza Bohemia","Especial","https://www.damm.com/es/cervezas"],
- ["Voll-Damm","Doble malta","Doble malta","https://www.damm.com/es/cervezas"],
+ ["Daura","Cerveza sin gluten","Sin gluten","https://www.damm.com/es/cervezas"],
+ ["Complot Session IPA","Complot Session IPA","IPA","https://www.damm.com/es/cervezas"],
+ ["Daura IPA","Daura IPA","IPA sin gluten","https://www.damm.com/es/cervezas"],
+ ["Daura Non-Alc","Daura sin alcohol","Sin alcohol","https://www.damm.com/es/cervezas"],
+ ["Voll-Damm","Doble malta","Märzenbier","https://www.damm.com/es/cervezas"],
  ["Damm Lemon","Clara Mediterránea","Clara","https://www.damm.com/es/cervezas"],
- ["Complot","IPA Mediterránea","IPA","https://www.damm.com/es/cervezas"],
  ["Inedit","Cerveza de malta y trigo con especias","Gastronómica","https://www.damm.com/es/cervezas"],
  ["Free Damm","Cerveza sin alcohol 0,0%","0,0%","https://www.damm.com/es/cervezas"],
  ["Bock Damm","Cerveza negra. Maltas tostadas","Negra","https://www.damm.com/es/cervezas"],
- ["Daura","Cerveza sin gluten","Sin gluten","https://www.damm.com/es/cervezas"],
- ["A.K. Damm","Cerveza Alsaciana","Especial","https://www.damm.com/es/cervezas"],
- ["Xibeca","Cerveza suave y refrescante","Suave","https://www.damm.com/es/cervezas"],
- ["Cerveza de Navidad","Cerveza especial Navidad","Edición especial","https://www.damm.com/es/cervezas"]
+ ["Free Damm Limón","Cerveza sin alcohol con limón","0,0%","https://www.damm.com/es/cervezas"],
+ ["Free Damm Tostada","Cerveza 0,0% tostada","0,0%","https://www.damm.com/es/cervezas"],
+ ["A.K. Damm","Cerveza Alsaciana","Especial","https://www.damm.com/es/cervezas"]
 ];
 const incidents = [
  {id:"INC-0261",title:"Aviso de sensor — ejemplo",machine:"ENV-001",date:"05/11/2026",priority:"Media",state:"En revisión",desc:"Caso simulado para enseñar trazabilidad. No representa una avería real."},
@@ -54,7 +55,7 @@ function assistant(){return head("ASISTENTE / CONSULTA","DAM Bot","Asistente dem
 function answer(q){const s=norm(q);if(/^(hola|buenas|hey|buenos dias|buenas tardes|buenas noches|que tal|holi)/.test(s)||s.includes("como estas"))return "¡Hola! 😊 Encantado de ayudarte. Puedo explicarte el proyecto DammPulse, consultar información pública del catálogo de cervezas o enseñarte cómo se organiza el conocimiento de máquinas. ¿Por dónde empezamos?";
 if(s.includes("quien eres")||s.includes("que puedes hacer")||s.includes("ayuda"))return "Soy DAM Bot, el asistente de demostración de DammPulse. Puedo responder preguntas sobre los productos públicos incluidos en esta demo, explicar el uso de los módulos y orientar sobre captura y validación del conocimiento. No estoy conectado a sistemas internos de Damm.";
 const p=products.find(x=>s.includes(norm(x[0])));if(p)return p[0]+": "+p[1]+". Categoría: "+p[2]+". Puedes consultar el catálogo y la ficha oficial en damm.com/es/cervezas.";
-if(s.includes("sin alcohol")||s.includes("0 0")||s.includes("0,0"))return "En el catálogo público consultado aparecen Free Damm (0,0%), Free Damm Limón y Free Damm Tostada. Para ingredientes y datos actualizados, consulta sus fichas oficiales en la web de Damm.";
+if(s.includes("sin alcohol")||s.includes("0 0")||s.includes("0,0"))return "En el catálogo público consultado aparecen Free Damm, Free Damm Limón, Free Damm Tostada y Daura Non-Alc. Para ingredientes y datos actualizados, consulta sus fichas oficiales en la web de Damm.";
 if(s.includes("cerveza")||s.includes("catalogo")||s.includes("productos"))return "El catálogo público incluye, entre otras, Estrella Damm, Bohemia, Voll-Damm, Damm Lemon, Complot, Inedit, Free Damm, Bock Damm, Daura, A.K. Damm y Xibeca. Puedes ver el catálogo oficial desde la sección «Producto Damm».";
 if(s.includes("qr"))return "Cada QR identifica un activo y abre su ficha contextual: identificación, documentación aprobada, historial y contactos. En esta demo los equipos son ficticios; en una implantación real, cada QR debería apuntar a una ficha autorizada.";
 if(s.includes("averia")||s.includes("incidencia")||s.includes("fallo"))return "DammPulse propone registrar el código del equipo, fecha y hora, síntoma observable y contexto. Después se escala por el canal oficial. Esta demo no proporciona diagnósticos ni pasos de reparación.";
