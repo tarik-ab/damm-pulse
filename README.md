@@ -1,2 +1,31 @@
-# damm-pulse
-Plataforma inteligente de formación y conocimiento industrial
+# DammPulse
+
+Prototipo académico de una plataforma de conocimiento y formación industrial.
+
+## Funcionalidades incluidas
+- Panel principal y navegación por secciones.
+- Catálogo de máquinas con búsqueda, ficha contextual y QR.
+- Registro y consulta de incidencias simuladas.
+- Cápsulas de formación con cuestionarios.
+- Formulario de aportación de conocimiento experto (borradores locales).
+- DAM Bot de demostración con respuestas predefinidas y salida segura cuando no conoce una respuesta.
+- Diseño responsive para ordenador, tablet y móvil.
+
+## Ejecutar
+Abre `index.html` en un navegador o publica el repositorio mediante GitHub Pages.
+
+## Publicar con GitHub Pages
+1. En el repositorio, abre **Settings → Pages**.
+2. En **Build and deployment**, selecciona **Deploy from a branch**.
+3. Selecciona la rama **main** y la carpeta **/(root)**.
+4. Pulsa **Save** y espera a que GitHub genere la URL.
+
+## Importante
+Todo el contenido actual es ficticio. No contiene procedimientos reales ni debe utilizarse para operar o mantener maquinaria. Los formularios y aportaciones se guardan localmente en el navegador; no hay backend, usuarios, permisos, base de datos compartida ni IA conectada. El QR se genera para la URL de la ficha en el navegador y requiere que la web esté publicada para que otros dispositivos puedan abrirlo. Los datos reales de Damm solo deben incorporarse con autorización y validación de responsables competentes.
+
+## Siguientes fases
+1. Validar el problema y los flujos con trabajadores de Damm.
+2. Diseñar backend, autenticación, roles y base de datos.
+3. Incorporar búsqueda semántica/IA con fuentes aprobadas y registro de referencias.
+4. Añadir transcripción de audio con revisión humana obligatoria.
+5. Añadir métricas basadas en datos reales autorizados.
