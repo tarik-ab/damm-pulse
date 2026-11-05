@@ -78,7 +78,7 @@ function render(){
     $("#current-section").textContent=map[id]||"Inicio";
     document.querySelectorAll(".nav-link").forEach(a=>a.classList.toggle("active",a.dataset.view===id));
     $("#sidebar").classList.remove("open");
-    const pages={home,machines:machinesPage,qr:qrPage,incidents:incidentsPage,academy,knowledge,products};
+    const pages={home,machines:machinesPage,qr:qrPage,incidents:incidentsPage,academy,knowledge:knowledgePage,products:productsPage};
     view.innerHTML=asset?machineDetail(h.slice(6)):id==="assistant"?assistant():id.startsWith("product-")?productDetail(Number(id.slice(8))):(pages[h]||home)();
     view.focus({preventScroll:true});
   } catch(error) {
