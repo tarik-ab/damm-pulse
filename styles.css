@@ -80,3 +80,85 @@ body{background:#f4f6f2;color:var(--ink)}
 @media print{body *{visibility:hidden!important}#qr-preview,#qr-preview *{visibility:visible!important}#qr-preview{position:absolute;inset:0;border:0;background:white}.qr-label{box-shadow:none}}
 
 .auth-root{position:fixed;inset:0;z-index:1000;background:#0d211c;color:#f7f8f2;overflow:auto}.auth-backdrop{min-height:100vh;display:grid;grid-template-columns:minmax(320px,500px) 1fr;align-items:center;gap:8vw;padding:clamp(20px,6vw,80px);background:radial-gradient(ellipse at 78% 28%,#2a5545,transparent 42%),linear-gradient(135deg,#0d211c,#142d25 62%,#0b1b17)}.auth-card{width:100%;max-width:480px;margin:auto;background:#f8f8f2;color:#172a24;border-radius:24px;padding:clamp(24px,4vw,42px);box-shadow:0 35px 100px #0005}.auth-brand{display:flex;align-items:center;gap:13px;margin-bottom:34px}.auth-mark{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:#c5df75;color:#132c23;font:800 24px Manrope}.auth-brand strong{font:800 17px Manrope;letter-spacing:1px}.auth-brand small{display:block;color:#718077;font:9px Manrope;letter-spacing:1.5px;margin-top:4px}.auth-kicker{font:10px Manrope;letter-spacing:1.8px;color:#7d8d7d}.auth-card h1{font:800 clamp(28px,4vw,38px) Manrope;letter-spacing:-1.5px;margin:10px 0}.auth-intro{color:#718078;line-height:1.65;font-size:13px}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;background:#e9ece4;border-radius:12px;padding:4px;margin:20px 0}.auth-tabs button{border:0;border-radius:9px;background:transparent;color:#69766d;padding:11px;font-size:12px;font-weight:700}.auth-tabs button.active{background:#fff;color:#18372c;box-shadow:0 2px 8px #102b2512}.auth-form{display:grid;gap:13px}.auth-form label{display:grid;gap:7px;font-size:11px;font-weight:700;color:#34483d}.auth-form input{width:100%;border:1px solid #dce2d8;background:#fff;border-radius:10px;padding:13px;color:#1a3027;outline:none}.auth-form input:focus{border-color:#789d58;box-shadow:0 0 0 3px #b4d18c35}.auth-form label small{font-size:10px;color:#839087;font-weight:400}.auth-submit{margin-top:5px;background:#18392e;color:#fff;border:0;border-radius:11px;padding:15px;font-weight:700}.auth-foot{border-top:1px solid #e5e8df;margin-top:22px;padding-top:16px;color:#637469;font-size:10px}.auth-demo-note{font-size:9px;color:#8a948b;line-height:1.55}.auth-message{padding:10px;background:#fff0e8;color:#9b4d31;border-radius:9px;font-size:11px}.auth-side{text-align:center;color:white}.auth-side-orbit{width:190px;height:190px;border:1px solid #a8c77c70;border-radius:50%;display:grid;place-items:center;margin:0 auto 35px;color:#d5e99d;font:300 60px Manrope;box-shadow:0 0 0 24px #ffffff05,0 0 0 48px #ffffff03}.auth-side h2{font:800 36px/1.1 Manrope;letter-spacing:-1px}.auth-side em{font-style:normal;color:#c5df75}.auth-side small{color:#a9b8ac;letter-spacing:2px;font:10px Manrope}.profile-copy{min-width:0;flex:1}.logout-mini{border:1px solid #ffffff2b;background:#ffffff0a;color:#dce8df;border-radius:8px;width:30px;height:30px}.nav-link[hidden]{display:none!important}.admin-hero{border-radius:20px;padding:30px;background:linear-gradient(115deg,#142e26,#284c3b);color:#fff;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.admin-hero h1{font:800 clamp(25px,4vw,38px) Manrope;margin:8px 0}.admin-hero p:not(.eyebrow){color:#bdcfc2;font-size:12px}.admin-lock{width:76px;height:76px;border-radius:22px;background:#c5df75;color:#18372b;display:grid;place-items:center;font-size:32px}.admin-users{margin-top:16px}.admin-empty{padding:32px;text-align:center;color:#7b897f}@media(max-width:850px){.auth-backdrop{grid-template-columns:1fr;padding:18px}.auth-side{display:none}.auth-card{max-width:500px}}
+
+/* Identidad visual Damtarik — inspiración Damm: rojo, dorado y cerveza */
+:root{
+  --ink:#321d20;
+  --ink2:#54252a;
+  --green:#d6ad58;
+  --paper:#faf6ee;
+  --muted:#81736d;
+  --line:#eadfd3;
+  --white:#fffdf9;
+  --gold:#d6ad58;
+  --shadow:0 18px 55px #45131b12;
+}
+body{background:#faf6ee;color:#321d20}
+.sidebar{background:linear-gradient(180deg,#761b2a 0%,#981e30 68%,#641725 100%);color:#fff}
+.brand-mark{background:linear-gradient(145deg,#f0d18a,#c89436);color:#571b25;box-shadow:0 6px 18px #d6ad5840}
+.nav-link{color:#f2e5df}
+.nav-link:hover,.nav-link.active{background:#ffffff18;color:#fff}
+.nav-link.active{box-shadow:inset 3px 0 #e7c36f;border-color:#e7c36f44}
+.side-caption{color:#e4c5bd}
+.main-area{background:linear-gradient(180deg,#fffdf9,#f8f1e8)}
+.topbar{background:#fffdf9ed;border-bottom-color:#eadfd3}
+.crumb{color:#9b8980}
+.demo-tag{border-color:#efdfbf;background:#fff8e9;color:#8b5c22}
+.pulse{background:#d5a64e;box-shadow:0 0 0 3px #d5a64e25}
+.page-head h1,.panel-head h2,.stat-card strong,.machine-card h3{color:#421f25}
+.eyebrow,.module-label{color:#a26d35}
+.btn{border-color:#eadfd3;color:#4a292b;background:#fffdf9}
+.btn.primary{background:#8e1d2d;border-color:#8e1d2d;color:#fff}
+.btn.primary:hover{background:#701625}
+.btn.green,.btn.gold{background:linear-gradient(135deg,#f0d18a,#d2a34c);border-color:#d2a34c;color:#4a2527}
+.btn.glass{background:#ffffff18;color:#fff;border-color:#ffffff66}
+.hero,.detail-banner,.product-intro{background:linear-gradient(115deg,#641725,#a32335 58%,#bd743d);color:#fff}
+.hero .eyebrow,.product-intro .eyebrow{color:#f1d28b}
+.hero h1 em{color:#f1d28b}
+.hero p,.product-intro p:not(.eyebrow){color:#f7e9df}
+.hero-orbit{color:#f1d28b;border-color:#f1d28b88}
+.stat-card,.panel,.quick-card,.machine-card,.lesson-card{background:#fffdf9;border-color:#eadfd3}
+.stat-card{box-shadow:0 8px 26px #6d1a260b}
+.quick-card:hover,.machine-card:hover{border-color:#d7b46d;box-shadow:0 18px 35px #6d1a2618}
+.quick-card .q-icon,.quick-card b{color:#a32335}
+.tag{background:#f8edda;color:#8a5d25}
+.tag.amber{background:#fff2d8;color:#93651e}
+.tag.red{background:#f8e5e5;color:#a32335}
+.tag.gray{background:#f0ece7;color:#756b65}
+.machine-symbol{background:#faeee8;color:#9a2635}
+.machine-area,.machine-card .code{color:#a16c30}
+.text-link{color:#9b2636}
+.progress span{background:#c99b45}
+.answer:hover{border-color:#d2a34c}
+.answer.correct{border-color:#c99b45;background:#fff7e6}
+.answer.wrong{border-color:#c77a78;background:#fbefed}
+.field input:focus,.field textarea:focus,.field select:focus,.select:focus{border-color:#c99b45;box-shadow:0 0 0 3px #d6ad582e}
+.chat-head .bot-avatar,.bot-avatar{background:#8e1d2d;color:#f1d28b}
+.message.bot{background:#f8eee5}
+.message.user{background:#8e1d2d;color:#fff}
+.suggestion:hover{border-color:#d2a34c}
+.chat-warning,.safety-note{background:#fff5e4;border-left-color:#d2a34c;color:#795d36}
+.footer b{color:#a32335}
+.product-photo{background:radial-gradient(circle at 50% 35%,#fff6e3,#f2e5d6 65%,#ead8ca)}
+.product-detail-photo{background:radial-gradient(circle at 50% 35%,#fff6e3,#f2e5d6 70%,#ead8ca)}
+.product-photo-label{color:#7c3c35}
+.product-intro:after{border-color:#f1d28b44}
+.machines-banner{background:linear-gradient(90deg,#641725f5,#8e1d2da8 65%,#8e1d2d50),url("https://static.downtheroadbrewery.com/cloud/miBpoKpqRllSkopnillnl/commercial-brewery-building-requirements-industrial-brewery-facility.jpg") center/cover}
+.qr-preview{background:repeating-linear-gradient(135deg,#fffaf1,#fffaf1 12px,#f8efe3 12px,#f8efe3 24px)}
+.qr-label-top{color:#9b2636}
+.auth-root{background:#641725}
+.auth-backdrop{background:radial-gradient(ellipse at 78% 28%,#a43a43,transparent 42%),linear-gradient(135deg,#641725,#8e1d2d 62%,#4b1520)}
+.auth-mark{background:#e6c477;color:#641725}
+.auth-kicker{color:#a16c30}
+.auth-tabs button.active{color:#8e1d2d}
+.auth-submit{background:#8e1d2d}
+.auth-submit:hover{background:#701625}
+.auth-form input:focus{border-color:#c99b45;box-shadow:0 0 0 3px #d6ad5835}
+.auth-side-orbit{color:#f1d28b;border-color:#f1d28b70}
+.auth-side em{color:#f1d28b}
+.admin-hero{background:linear-gradient(115deg,#641725,#a32335)}
+.admin-lock{background:#e6c477;color:#641725}
+.logout-mini{color:#f2e5df}
+.toast{background:#641725}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#d2a34c}
+@media(prefers-reduced-motion:reduce){.hero-orbit{animation:none}}
