@@ -360,13 +360,49 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 @media(prefers-reduced-motion:reduce){.beer-extra-tile img{transition:none}.beer-extra-tile:hover img{transform:none}}
 
 
-/* Tema rojo: conservar intactos el layout y las superficies originales */
-:root { --green: #FF0000; }
-.btn.primary {
+/* Tema rojo integral: rojo protagonista en toda la interfaz */
+:root {
+  --green: #FF0000;
+  --paper: #FF0000;
+  --ink: #251010;
+  --ink2: #430000;
+}
+body, .main-area { background: #FF0000; }
+.sidebar {
   background: #FF0000;
-  border-color: #FF0000;
+  color: #FFFFFF;
+  border-right: 1px solid #D90000;
+}
+.brand, .sidebar .profile strong { color: #FFFFFF; }
+.brand small, .side-caption, .profile small, .side-disclaimer { color: #FFE0E0; }
+.brand-mark { background: #FFFFFF; color: #FF0000; }
+.nav-link { color: #FFFFFF; }
+.nav-link:hover, .nav-link.active { background: #C90000; color: #FFFFFF; }
+.nav-link.active { box-shadow: inset 4px 0 #FFFFFF; }
+.nav-link b, .nav-link i { color: #FFFFFF; }
+.topbar {
+  background: #FF0000;
+  border-bottom: 1px solid #D90000;
   color: #FFFFFF;
 }
-.btn.primary:hover { background: #CC0000; border-color: #CC0000; }
-.brand-mark { background: #FF0000; color: #FFFFFF; }
-.nav-link.active { box-shadow: inset 3px 0 #FF0000; }
+.crumb, .crumb strong, .crumb span, .menu-toggle { color: #FFFFFF; }
+.demo-tag { background: #C90000; border-color: #FFFFFF66; color: #FFFFFF; }
+.pulse { background: #FFFFFF; box-shadow: 0 0 0 3px #FFFFFF33; }
+.top-avatar { background: #FFFFFF; color: #FF0000; }
+.view { background: #FF0000; }
+.footer {
+  background: #FF0000;
+  color: #FFFFFF;
+  border-top: 1px solid #D90000;
+}
+.footer strong, .footer b { color: #FFFFFF; }
+.hero { background: #C90000; }
+.hero:before { background: linear-gradient(115deg, transparent 35%, #FFFFFF18 100%); }
+.hero .eyebrow, .hero h1 em { color: #FFFFFF; }
+.btn.primary {
+  background: #B80000;
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+}
+.btn.primary:hover { background: #8F0000; border-color: #FFFFFF; }
+.btn.green { background: #FF0000; border-color: #FF0000; color: #FFFFFF; }
