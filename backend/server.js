@@ -352,6 +352,49 @@ app.post("/api/products",auth,adminOnly,(req,res)=>{
   } catch(err) { if(String(err.code||"").includes("CONSTRAINT")) return res.status(409).json({error:"Ya existe un producto con ese código."}); console.error(err); res.status(500).json({error:"No se pudo guardar el producto."}); }
 });
 
+
+app.patch("/api/academy/courses/:id",auth,adminOnly,(req,res)=>{
+  const id=numericId(req.params.id); if(!id) return res.status(400).json({error:"Identificador no válido."});
+  const old=db.prepare("SELECT * FROM academy_courses WHERE id=?").get(id); if(!old) return res.status(404).json({error:"Curso no encontrado."});
+  const title=req.body.title===undefined?old.title:textValue(req.body.title,160);
+  const description=req.body.description===undefined?old.description:textValue(req.body.description,1000);
+  const content=req.body.content===undefined?old.content:textValue(req.body.content,12000);
+  const duration=req.body.durationMinutes===undefined?old.duration_minutes:Math.min(1440,Math.max(0,Number(req.body.durationMinutes)||0));
+  const published=req.body.published===undefined?old.published:(req.body.published===true?1:0);
+  if(title.length<3||content.length<10) return res.status(400).json({error:"Título o contenido no válido."});
+  db.prepare("UPDATE academy_courses SET title=?,description=?,content=?,duration_minutes=?,published=?,updated_at=CURRENT_TIMESTAMP WHERE id=?").run(title,description,content,duration,published,id);
+  audit(req,req.user.id,"academy.course.update");
+  res.json({ok:true});
+});
+app.patch("/api/knowledge/:id",auth,adminOnly,(req,res)=>{
+  const id=numericId(req.params.id); if(!id) return res.status(400).json({error:"Identificador no válido."});
+  const old=db.prepare("SELECT * FROM knowledge_articles WHERE id=?").get(id); if(!old) return res.status(404).json({error:"Artículo no encontrado."});
+  const title=req.body.title===undefined?old.title:textValue(req.body.title,180);
+  const category=req.body.category===undefined?old.category:textValue(req.body.category,80);
+  const body=req.body.body===undefined?old.body:textValue(req.body.body,12000);
+  const tags=req.body.tags===undefined?old.tags:textValue(req.body.tags,500);
+  const status=req.body.status===undefined?old.status:textValue(req.body.status,16);
+  if(title.length<3||body.length<20||!["draft","published"].includes(status)) return res.status(400).json({error:"Artículo no válido."});
+  db.prepare("UPDATE knowledge_articles SET title=?,category=?,body=?,tags=?,status=?,updated_at=CURRENT_TIMESTAMP WHERE id=?").run(title,category,body,tags,status,id);
+  audit(req,req.user.id,"knowledge.update."+status);
+  res.json({ok:true});
+});
+app.patch("/api/products/:id",auth,adminOnly,(req,res)=>{
+  const id=numericId(req.params.id); if(!id) return res.status(400).json({error:"Identificador no válido."});
+  const old=db.prepare("SELECT * FROM products WHERE id=?").get(id); if(!old) return res.status(404).json({error:"Producto no encontrado."});
+  const sku=req.body.sku===undefined?old.sku:textValue(req.body.sku,80);
+  const name=req.body.name===undefined?old.name:textValue(req.body.name,160);
+  const category=req.body.category===undefined?old.category:textValue(req.body.category,80);
+  const format=req.body.format===undefined?old.format:textValue(req.body.format,120);
+  const description=req.body.description===undefined?old.description:textValue(req.body.description,2000);
+  if(!sku||name.length<2) return res.status(400).json({error:"Código o nombre no válido."});
+  try {
+    db.prepare("UPDATE products SET sku=?,name=?,category=?,format=?,description=?,updated_at=CURRENT_TIMESTAMP WHERE id=?").run(sku,name,category,format,description,id);
+    audit(req,req.user.id,"product.update");
+    res.json({ok:true});
+  } catch(err) { if(String(err.code||"").includes("CONSTRAINT")) return res.status(409).json({error:"Ya existe otro producto con ese código."}); console.error(err); res.status(500).json({error:"No se pudo actualizar el producto."}); }
+});
+
 // DAM Bot is a grounded search over approved articles, not an unconfigured generative model.
 app.post("/api/assistant/query",auth,(req,res)=>{
   const question=textValue(req.body.question,500);
