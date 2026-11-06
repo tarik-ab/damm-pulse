@@ -88,7 +88,7 @@ async function passwordDigest(password,salt){
  return "demo-"+(h1>>>0).toString(16)+(h2>>>0).toString(16);
 }
 function enterSession(user){localStorage.setItem("dp-session",JSON.stringify(user));$("#auth-root").hidden=true;document.querySelector(".app-shell").hidden=false;render()}
-function adminLockedPage(){return '<section class="admin-hero"><div><p class="eyebrow">CONTROL CENTER / ADMIN</p><h1>Administración.</h1><p>El acceso está reservado al administrador.</p></div><div class="admin-lock">✦</div></section><section class="panel admin-users"><div class="admin-lock-message"><span class="admin-lock-star">✦</span><h2>Panel privado</h2><p>El apartado ya está en el menú, justo debajo de DAM Bot. Para consultar el directorio completo de usuarios necesitamos terminar la conexión segura con la API y MariaDB.</p><p class="help">Los registros que ves en este navegador no son una base de datos compartida. No se mostrarán datos personales a cuentas normales.</p></div></section>'}
+function adminLockedPage(){return '<section class="panel admin-login-card"><div class="admin-login-mark">✦</div><p class="eyebrow">CONTROL CENTER / ACCESO SEGURO</p><h1>Administración</h1><p class="sub">Inicia sesión como administrador para consultar el directorio de usuarios y sus datos de registro.</p><form id="admin-login-form" class="admin-login-form"><label>Usuario<input name="identifier" autocomplete="username" placeholder="Usuario administrador" required></label><label>Contraseña<input name="password" type="password" autocomplete="current-password" placeholder="Contraseña" required></label><button class="btn primary" type="submit">Entrar al panel →</button><p id="admin-login-error" class="admin-login-error" role="status"></p></form><div class="admin-security-note">El acceso y la lista de usuarios deben validarse en la API conectada a MariaDB. La contraseña no se guarda en esta web ni se incrusta en el código público.</div></section>'}
 function adminPage(){const users=getUsers();return '<section class="admin-hero"><div><p class="eyebrow">CONTROL CENTER / ADMIN</p><h1>Panel de administración.</h1><p>Directorio de cuentas disponibles en este navegador.</p></div><div class="admin-lock">✦</div></section><div class="stat-grid"><article class="stat-card"><span class="stat-label">Cuentas registradas</span><strong>'+users.length+'</strong><small>Almacenamiento local</small></article><article class="stat-card"><span class="stat-label">Administrador</span><strong>TARIK</strong><small>Sesión autorizada</small></article></div><section class="panel admin-users"><div class="panel-head"><div><p>DIRECTORIO</p><h2>Usuarios registrados</h2></div></div>'+(users.length?'<div class="table-wrap"><table><thead><tr><th>Nombre</th><th>Usuario</th><th>Correo</th><th>Departamento</th><th>Alta</th></tr></thead><tbody>'+users.map(u=>'<tr><td>'+esc(u.name)+'</td><td>'+esc(u.username)+'</td><td>'+esc(u.email)+'</td><td>'+esc(u.department||"—")+'</td><td>'+esc(u.createdAt||"—")+'</td></tr>').join("")+'</tbody></table></div>':'<p class="admin-empty">Todavía no hay usuarios registrados en este navegador.</p>')+'</section><div class="safety-note">Directorio local de demostración. No es todavía el registro compartido de MariaDB.</div>'}
 function render(){
   try {
@@ -105,7 +105,7 @@ function render(){
     document.querySelectorAll(".nav-link").forEach(a=>a.classList.toggle("active",a.dataset.view===id));
     $("#sidebar").classList.remove("open");
     const pages={home,machines:machinesPage,qr:qrPage,incidents:incidentsPage,academy,knowledge:knowledgePage,products:productsPage,admin:adminPage};
-    view.innerHTML=h==="admin"&&user.role!=="admin"?adminLockedPage():asset?machineDetail(h.slice(6)):id==="assistant"?assistant():id.startsWith("product-")?productDetail(Number(id.slice(8))):(pages[h]||home)();
+    view.innerHTML=h==="admin"?adminLockedPage():asset?machineDetail(h.slice(6)):id==="assistant"?assistant():id.startsWith("product-")?productDetail(Number(id.slice(8))):(pages[h]||home)();
     view.focus({preventScroll:true});
   } catch(error) {
     console.error("DammPulse render error:",error);
@@ -202,4 +202,25 @@ document.addEventListener("submit",e=>{
  e.preventDefault();const field=$("#shift-note-text"),value=field.value.trim();if(!value)return;
  let notes=[];try{notes=JSON.parse(localStorage.getItem("dt-learning-notes")||"[]")}catch{}
  notes.unshift({text:value,date:new Date().toLocaleString("es-ES")});localStorage.setItem("dt-learning-notes",JSON.stringify(notes.slice(0,30)));toast("Nota guardada en este navegador");render();
+});
+
+document.addEventListener("submit",async e=>{
+ if(e.target.id!=="admin-login-form")return;
+ e.preventDefault();
+ const form=e.target,button=form.querySelector('button[type="submit"]'),error=$("#admin-login-error");
+ const api=String(window.DAMMPULSE_API_URL||"").replace(/\/$/,"");
+ if(!api){error.textContent="La API de administración aún no está desplegada/conectada. El formulario está preparado, pero todavía no puede validar usuarios.";return;}
+ button.disabled=true;button.textContent="Verificando…";error.textContent="";
+ try{
+  const fd=new FormData(form);
+  const response=await fetch(api+"/api/auth/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({identifier:String(fd.get("identifier")||""),password:String(fd.get("password")||"")})});
+  const data=await response.json();
+  if(!response.ok||data.user?.role!=="admin")throw new Error(data.error||"Esta cuenta no tiene permisos de administración.");
+  const usersResponse=await fetch(api+"/api/admin/users",{headers:{Authorization:"Bearer "+data.token}});
+  const directory=await usersResponse.json();
+  if(!usersResponse.ok)throw new Error(directory.error||"No se pudo cargar el directorio.");
+  const rows=(directory.users||[]).map(u=>'<tr><td>'+esc(u.name)+'</td><td>'+esc(u.username)+'</td><td>'+esc(u.email)+'</td><td>'+esc(u.department||"—")+'</td><td>'+esc(u.createdAt||"—")+'</td><td>'+esc(u.status||"—")+'</td></tr>').join("");
+  $("#view").innerHTML='<section class="admin-hero"><div><p class="eyebrow">CONTROL CENTER / ADMIN</p><h1>Bienvenido, '+esc(data.user.name||"Tarik")+'</h1><p>Directorio de usuarios conectado a MariaDB.</p></div></section><section class="panel admin-users"><div class="panel-head"><div><p>DIRECTORIO</p><h2>Usuarios registrados · '+Number(directory.total||0)+'</h2></div></div><div class="table-wrap"><table><thead><tr><th>Nombre</th><th>Usuario</th><th>Correo</th><th>Departamento</th><th>Alta</th><th>Estado</th></tr></thead><tbody>'+(rows||'<tr><td colspan="6" class="empty-state">Aún no hay usuarios registrados.</td></tr>')+'</tbody></table></div></section>';
+ }catch(err){error.textContent=err.message||"No se pudo iniciar sesión.";}
+ finally{button.disabled=false;button.textContent="Entrar al panel →";}
 });
