@@ -360,13 +360,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 @media(prefers-reduced-motion:reduce){.beer-extra-tile img{transition:none}.beer-extra-tile:hover img{transform:none}}
 
 
-/* Acentos rojos de marca; conservar la paleta y superficies originales */
-:root { --green: #E50914; }
+/* Tema rojo: conservar intactos el layout y las superficies originales */
+:root { --green: #FF0000; }
 .btn.primary {
-  background: #E50914;
-  border-color: #E50914;
+  background: #FF0000;
+  border-color: #FF0000;
   color: #FFFFFF;
 }
-.btn.primary:hover { background: #C9000B; border-color: #C9000B; }
-.brand-mark { background: #E50914; color: #FFFFFF; }
-.nav-link.active { box-shadow: inset 3px 0 #E50914; }
+.btn.primary:hover { background: #CC0000; border-color: #CC0000; }
+.brand-mark { background: #FF0000; color: #FFFFFF; }
+.nav-link.active { box-shadow: inset 3px 0 #FF0000; }
