@@ -11,8 +11,26 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="stylesheet" href="styles.css?v=20261106-full-red">
+  <style>
+    .damm-splash{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;overflow:hidden;background:#ff1010;opacity:1;visibility:visible}
+    .damm-splash__logo{display:flex;align-items:center;justify-content:center;white-space:nowrap;color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:900;font-size:clamp(5rem,19vw,12rem);line-height:.8;letter-spacing:-.09em}
+    .damm-splash__d{position:relative;z-index:1}
+    .damm-splash__rest{display:inline-block;max-width:0;overflow:hidden;opacity:0;letter-spacing:-.09em;animation:damm-reveal .72s cubic-bezier(.2,.8,.2,1) 1.05s forwards}
+    .damm-splash__plus{position:relative;z-index:2;margin-left:.06em;color:#ffd51f;font-family:Arial,sans-serif;font-size:.72em;line-height:1;letter-spacing:0;transform:translateX(-.05em);animation:damm-plus-move .9s cubic-bezier(.2,.8,.2,1) 1.05s forwards}
+    .damm-splash{animation:damm-splash-out .6s ease 2.65s forwards}
+    body.damm-splash-running{overflow:hidden}
+    body.damm-splash-running .app-shell{visibility:hidden;opacity:0}
+    .app-shell{transition:opacity .35s ease}
+    @keyframes damm-reveal{to{max-width:4em;opacity:1}}
+    @keyframes damm-plus-move{to{transform:translateX(0)}}
+    @keyframes damm-splash-out{to{opacity:0;visibility:hidden;pointer-events:none}}
+    @media(prefers-reduced-motion:reduce){.damm-splash,.damm-splash__rest,.damm-splash__plus{animation-duration:.01ms!important;animation-delay:0ms!important}.app-shell{transition:none}}
+  </style>
 </head>
-<body>
+<body class="damm-splash-running">
+  <div class="damm-splash" id="damm-splash" aria-hidden="true">
+    <div class="damm-splash__logo"><span class="damm-splash__d">D</span><span class="damm-splash__rest">amm</span><span class="damm-splash__plus">+</span></div>
+  </div>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
       <a class="brand" href="#home"><span class="brand-mark">D</span><span>DAMM<span class="brand-light">PULSE</span><small>INDUSTRIAL KNOWLEDGE 360</small></span></a>
@@ -48,5 +66,15 @@
   <div id="modal-root"></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="app.js?v=20261106experience"></script>
+  <script>
+    (() => {
+      const finishSplash = () => document.body.classList.remove('damm-splash-running');
+      const splash = document.getElementById('damm-splash');
+      splash.addEventListener('animationend', event => {
+        if (event.animationName === 'damm-splash-out') finishSplash();
+      });
+      window.setTimeout(finishSplash, 3400);
+    })();
+  </script>
 </body>
 </html>
