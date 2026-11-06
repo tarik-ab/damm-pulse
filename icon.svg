@@ -1,6 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="112" fill="#241A14"/>
-  <circle cx="256" cy="256" r="178" fill="none" stroke="#E0A12E" stroke-width="18"/>
-  <path d="M160 348V164h86c62 0 101 32 101 91s-39 93-101 93h-86zm62-52h23c28 0 43-14 43-41 0-26-15-39-43-39h-23v80z" fill="#F7F1E6"/>
-  <path d="M120 390h272" stroke="#E0A12E" stroke-width="10" stroke-linecap="round" opacity=".8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Damm+</title>
+  <rect width="512" height="512" fill="#f4140d"/>
+  <g fill="#fff" font-family="Old English Text MT, UnifrakturCook, Cloister Black, Georgia, serif" font-weight="900">
+    <text x="45" y="315" font-size="188" letter-spacing="-14">Damm</text>
+  </g>
+  <path fill="#ffd400" d="M422 204h44v42h42v44h-42v42h-44v-42h-42v-44h42z"/>
 </svg>
