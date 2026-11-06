@@ -89,3 +89,98 @@ body {
 .product-card:hover {
   border-color: var(--gold);
 }
+
+
+/* Identidad visual: rojo puro, uniforme y sin degradados */
+:root {
+  --brand-red: #e50914;
+  --brand-red-dark: #c9000b;
+  --brand-red-soft: #fff0f0;
+}
+
+.sidebar,
+.hero,
+.detail-banner,
+.product-intro,
+.machines-banner,
+.login-story,
+.admin-hero,
+.auth-root,
+.auth-backdrop,
+.btn.primary,
+.btn.green,
+.btn.gold,
+.auth-submit,
+.message.user,
+.brand-mark,
+.nav-link.active,
+.nav-link[aria-current="page"],
+.experience-hero,
+.experience-banner,
+.quiz-option.selected,
+.progress-fill,
+.progress-bar > span,
+.badge,
+.pill,
+.tag,
+.toast.success {
+  background-color: var(--brand-red) !important;
+  background-image: none !important;
+  color: #fff !important;
+}
+
+.btn.primary,
+.btn.green,
+.btn.gold,
+.auth-submit,
+.nav-link.active,
+.nav-link[aria-current="page"] {
+  border-color: var(--brand-red) !important;
+}
+
+.btn.primary:hover,
+.btn.green:hover,
+.btn.gold:hover,
+.auth-submit:hover {
+  background-color: var(--brand-red-dark) !important;
+  background-image: none !important;
+}
+
+a,
+.link,
+.accent,
+.text-accent,
+.section-kicker,
+.eyebrow,
+.stat-value,
+.brand-light,
+.nav-link:hover,
+.quick-card .icon,
+.machine-card .icon {
+  color: var(--brand-red) !important;
+}
+
+.quick-card:hover,
+.machine-card:hover,
+.product-card:hover,
+.experience-card:hover,
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--brand-red) !important;
+  box-shadow: 0 0 0 2px rgba(229, 9, 20, .10);
+}
+
+button,
+.btn,
+.nav-link,
+.badge,
+.pill,
+.tag {
+  background-image: none !important;
+}
+
+::selection {
+  background: var(--brand-red);
+  color: #fff;
+}
