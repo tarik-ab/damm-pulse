@@ -409,3 +409,20 @@ body,.main-area,.view{background:var(--paper);color:var(--ink)}
 .visual-gallery-grid figcaption small{font-size:10px;color:#f3dede}
 @media(max-width:760px){.visual-gallery-grid{grid-template-columns:1fr 1fr}.visual-gallery-grid figure:first-child{grid-column:1/-1}.visual-gallery-head{align-items:start}}
 @media(max-width:430px){.visual-gallery-grid{grid-template-columns:1fr}.visual-gallery-grid figure:first-child{grid-column:auto}.visual-gallery-grid figure{height:210px}}
+
+
+/* Industrial gallery — imágenes integradas con la paleta DammPulse */
+.industrial-gallery{margin:30px 0 34px}
+.industrial-gallery .section-heading{margin-bottom:15px}
+.industrial-gallery .section-heading h2{margin:4px 0;color:var(--ink);font:800 clamp(22px,2.5vw,30px)/1.15 Manrope}
+.industrial-gallery .section-heading p:not(.eyebrow){margin:5px 0 0;color:var(--muted);font-size:12px}
+.industrial-gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.industrial-gallery-grid figure{position:relative;min-height:190px;height:clamp(190px,22vw,245px);margin:0;overflow:hidden;border-radius:16px;background:var(--ink)}
+.industrial-gallery-grid img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.industrial-gallery-grid figure:hover img{transform:scale(1.045)}
+.industrial-gallery-grid figure:after{content:"";position:absolute;inset:38% 0 0;background:linear-gradient(transparent,#101c18d9)}
+.industrial-gallery-grid figcaption{position:absolute;z-index:1;left:16px;right:14px;bottom:14px;display:grid;gap:4px;color:#fff}
+.industrial-gallery-grid figcaption small{font:700 9px Manrope;letter-spacing:1.3px;color:#ffb7bb}
+.industrial-gallery-grid figcaption strong{font:800 14px Manrope}
+@media(max-width:760px){.industrial-gallery-grid{grid-template-columns:1fr 1fr}.industrial-gallery-grid figure:last-child{grid-column:1/-1}}
+@media(max-width:430px){.industrial-gallery-grid{grid-template-columns:1fr}.industrial-gallery-grid figure:last-child{grid-column:auto}.industrial-gallery-grid figure{height:210px}}
