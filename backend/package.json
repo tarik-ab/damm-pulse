@@ -1,23 +1,21 @@
 {
   "name": "dammpulse-api",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "API segura de DammPulse 360 con MariaDB",
+  "description": "API segura de DammPulse 360 con base de datos SQLite",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js"
   },
-  "engines": {
-    "node": ">=20"
-  },
+  "engines": { "node": ">=20" },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.8.1",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
     "helmet": "^8.0.0",
-    "jsonwebtoken": "^9.0.2",
-    "mariadb": "^3.4.0"
+    "jsonwebtoken": "^9.0.2"
   }
 }
