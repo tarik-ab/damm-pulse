@@ -12,7 +12,14 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="stylesheet" href="styles.css?v=20261106experience">
 </head>
-<body>
+<body class="splash-active">
+  <div class="splash-screen" id="splash-screen" aria-hidden="true">
+    <div class="brand-lockup" aria-label="Damm logo splash animation">
+      <span class="word-damm">Damm</span>
+      <span class="plus">+</span>
+    </div>
+  </div>
+
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
       <a class="brand" href="#home"><span class="brand-mark">D</span><span>DAMM<span class="brand-light">PULSE</span><small>INDUSTRIAL KNOWLEDGE 360</small></span></a>
@@ -48,5 +55,12 @@
   <div id="modal-root"></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="app.js?v=20261106experience"></script>
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.body.classList.remove('splash-active');
+      }, 1800);
+    });
+  </script>
 </body>
 </html>
