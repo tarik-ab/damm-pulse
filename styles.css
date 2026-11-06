@@ -260,3 +260,31 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 @keyframes breweryPan{from{background-position:45% center;filter:saturate(.9)}to{background-position:58% center;filter:saturate(1.15)}}
 @media(max-width:760px){.hero-side{min-height:165px;min-width:0;margin-top:14px}.hero-orbit{width:116px;height:116px;font-size:27px}.hero-orbit:before{width:52px;height:78px}.hero-orbit:after{width:62px;top:calc(50% - 46px)}.hero-side-label{bottom:-3px}.photo-strip{grid-template-columns:1fr}.photo-strip-image{min-height:150px;grid-row:1}.photo-strip-copy{padding:22px}}
 @media(prefers-reduced-motion:reduce){.hero:before,.hero:after,.hero-orbit,.hero-orbit:after,.photo-strip-image{animation:none!important}.quick-card,.machine-card,.panel{transition:none}}
+
+/* BEER WORLD — galería editorial y recorrido cervecero */
+.beer-world{margin:38px 0 30px;padding:clamp(20px,3vw,34px);border-radius:22px;background:linear-gradient(135deg,#fffaf0,#f3e5ce);border:1px solid #e5d2b0;overflow:hidden}
+.beer-world-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:22px}
+.beer-world-heading h2,.brew-journey-title h2{font:800 clamp(23px,3vw,34px)/1.1 Manrope;color:#52202a;margin:6px 0}
+.beer-world-heading p:not(.eyebrow){color:#795d50;font-size:13px;max-width:560px;line-height:1.65}
+.beer-stamp{width:76px;height:76px;flex:0 0 76px;border:1px solid #bd8b42;border-radius:50%;display:grid;place-content:center;text-align:center;color:#9c6a25;font:700 9px Manrope;letter-spacing:1px;transform:rotate(9deg)}
+.beer-stamp b{font-size:19px}
+.beer-gallery{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:13px}
+.beer-tile{height:235px;position:relative;overflow:hidden;border-radius:15px;background:#68222a}
+.beer-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.1s cubic-bezier(.2,.7,.2,1),filter .8s}
+.beer-tile:hover img{transform:scale(1.09);filter:saturate(1.2)}
+.beer-tile:after{content:"";position:absolute;inset:25% 0 0;background:linear-gradient(transparent,#210c10c9)}
+.beer-tile-caption{position:absolute;z-index:1;bottom:17px;left:18px;color:#fff}
+.beer-tile-caption span{font:700 9px Manrope;letter-spacing:1.5px;color:#f4d18d}
+.beer-tile-caption h3{font:800 19px Manrope;margin:5px 0 0}
+.beer-tile-main{height:260px}
+.brew-journey{margin:28px 0 36px;padding:28px clamp(20px,3vw,34px);border-radius:20px;background:linear-gradient(115deg,#5b1824,#842532 55%,#a85d32);color:#fff;position:relative;overflow:hidden}
+.brew-journey:after{content:"";position:absolute;width:280px;height:280px;border:1px solid #ffffff22;border-radius:50%;right:-70px;top:-155px;box-shadow:0 0 0 25px #ffffff0a,0 0 0 55px #ffffff08;pointer-events:none}
+.brew-journey-title h2{color:#fff}
+.brew-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px;position:relative}
+.brew-steps:before{content:"";height:1px;background:#f4d18d88;position:absolute;top:15px;left:14px;right:14px}
+.brew-steps article{position:relative;padding:0 10px 0 0;display:flex;flex-direction:column;gap:9px}
+.brew-steps article span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#f2d18d;color:#57202a;font:800 10px Manrope;box-shadow:0 0 0 5px #ffffff12}
+.brew-steps article b{font:700 14px Manrope}
+.brew-steps article small{color:#f3dcd2;font-size:11px;line-height:1.55;max-width:190px}
+@media(max-width:760px){.beer-gallery{grid-template-columns:1fr 1fr}.beer-tile-main{grid-column:1/-1;height:210px}.beer-tile{height:175px}.beer-world-heading{align-items:flex-start}.brew-steps{grid-template-columns:1fr 1fr;row-gap:22px}.brew-steps:before{display:none}}
+@media(prefers-reduced-motion:reduce){.beer-tile img{transition:none}}
