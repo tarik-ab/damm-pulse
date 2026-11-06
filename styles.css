@@ -162,3 +162,73 @@ body{background:#faf6ee;color:#321d20}
 .toast{background:#641725}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#d2a34c}
 @media(prefers-reduced-motion:reduce){.hero-orbit{animation:none}}
+
+
+/* DAMMTARIK — ambiente cervecero mediterráneo: ámbar, espuma y rojo Damm */
+:root{
+ --ink:#3a2020;--ink2:#572c27;--green:#d8a744;--paper:#f7f0e3;
+ --muted:#82736a;--line:#e8d9c3;--white:#fffaf1;--gold:#d8a744;
+ --shadow:0 18px 55px #54251a18;
+}
+body{background:radial-gradient(ellipse at 90% 0%,#f1dfbd55,transparent 36%),#f7f0e3;color:#3a2020}
+.sidebar{background:linear-gradient(165deg,#781d29 0%,#9e2930 55%,#541b23 100%);box-shadow:5px 0 25px #4a171515}
+.brand{letter-spacing:1.2px}.brand-mark{background:linear-gradient(145deg,#ffe4a0,#d49b35);color:#74202a;box-shadow:0 5px 18px #f1ca7540}
+.brand small{color:#f0d6bd}
+.side-caption{color:#e9c8b4}
+.nav-link{color:#f4e5d9}.nav-link:hover,.nav-link.active{background:#ffffff1c;color:#fff}
+.nav-link.active{box-shadow:inset 3px 0 #f4c96c}
+.main-area{background:transparent}
+.topbar{background:#fffaf1ed;border-bottom-color:#e8d9c3}
+.crumb{color:#9b887a}.crumb strong{color:#572c27}
+.demo-tag{background:#fff5df;border-color:#e9d1a3;color:#895b24}
+.pulse{background:#d8a744;box-shadow:0 0 0 3px #d8a74430}
+.view{background:transparent}
+.page-head h1,.panel-head h2,.stat-card strong,.machine-card h3{color:#54272a}
+.eyebrow,.module-label{color:#a36d32}
+.btn{background:#fffaf1;border-color:#e7d7c0;color:#572c27}
+.btn.primary{background:#8c202d;border-color:#8c202d;color:#fff}
+.btn.primary:hover{background:#6f1925}
+.btn.green{background:linear-gradient(135deg,#f2d28a,#d5a03e);border-color:#d5a03e;color:#54272a}
+.hero{background:linear-gradient(112deg,#641923 0%,#8e202d 58%,#b46a32 100%);border:1px solid #a85b3b;box-shadow:0 18px 40px #6c20251c}
+.hero:before{background:radial-gradient(circle at 78% 45%,#ffd78342,transparent 26%),radial-gradient(circle at 92% 90%,#f7d28b25,transparent 30%),linear-gradient(115deg,transparent 45%,#ffffff10 100%)}
+.hero:after{border-color:#f9dfa044;box-shadow:0 0 0 35px #f9dfa018,0 0 0 78px #f9dfa00c}
+.hero .eyebrow{color:#f4d28a}.hero h1 em{color:#ffd982}.hero p{color:#f5e4d7}
+.hero-mark{border-color:#f0cf8c;color:#ffdc8d;background:radial-gradient(circle,#f2c86a1c,transparent 70%);box-shadow:0 0 0 12px #ffffff08,inset 0 0 30px #f4ca6b14}
+.stat-card,.panel,.quick-card,.machine-card,.lesson-card,.chat-panel,.chat-side{background:#fffaf2;border-color:#e8d9c3}
+.stat-card{box-shadow:0 7px 22px #54251a0b}
+.quick-card{position:relative;overflow:hidden}
+.quick-card:after{content:"";position:absolute;right:-22px;bottom:-28px;width:74px;height:74px;border:1px solid #d6a44c35;border-radius:50%;box-shadow:0 0 0 10px #d6a44c0d,0 0 0 22px #d6a44c08}
+.quick-card:hover,.machine-card:hover{border-color:#d6a44c;box-shadow:0 16px 34px #54251a18}
+.quick-card .q-icon,.quick-card strong,.text-link{color:#922532}
+.machine-row,.incident-row,.expert-row,.procedure,.quiz,.fact,.spec{background:#f7eddd}
+.machine-symbol,.bot-avatar{background:#f3e0bd;color:#8b2830}
+.machine-card .code{color:#a16b2c}
+.tag{background:#f4e7c9;color:#83551f}.tag.amber{background:#f9edcf;color:#8b611f}
+.tag.red{background:#f7e2de;color:#9b3035}.tag.gray{background:#eee6db;color:#76675f}
+.detail-banner{background:linear-gradient(115deg,#671923,#982632 65%,#b46b35);color:#fff}
+.detail-banner p{color:#f2dfd2}
+.detail-facts .fact{background:#f7eddd}
+.qr-box{background:#fffdf8;border-color:#d9b96e}
+.safety-note,.chat-warning{background:#fff4dc;border-left-color:#d5a03e;color:#775b32}
+.progress span{background:linear-gradient(90deg,#d9a33f,#a52a32)}
+.answer.correct{border-color:#d5a03e;background:#fff5df}
+.answer:hover,.suggestion:hover{border-color:#d5a03e}
+.field input:focus,.field textarea:focus,.field select:focus,.select:focus{border-color:#c7953c;box-shadow:0 0 0 3px #d8a74430}
+.chat-head .bot-avatar,.chat-head .bot-avatar{background:#8c202d;color:#f5d28a}
+.message.bot{background:#f5ead9}.message.user{background:#8c202d;color:#fff}
+.chat-warning{border-left:3px solid #d5a03e}
+.product-photo,.product-detail-photo{background:radial-gradient(ellipse at 50% 80%,#e5bd6b55,transparent 55%),linear-gradient(145deg,#f8edd8,#ead7b8)}
+.product-photo:after{content:"";position:absolute;inset:auto 0 0;height:4px;background:linear-gradient(90deg,#8c202d,#d6a744,#8c202d)}
+.product-photo img,.product-detail-photo img{mix-blend-mode:multiply}
+.product-content h3{color:#6d222b}
+.spec-grid .spec{background:#f7eddd}
+.login-screen{background:#f7f0e3}
+.login-story{background:linear-gradient(145deg,#621923,#962531 65%,#b36b35)}
+.login-story:after{color:#ffffff0d}
+.login-brand span,.login-story .eyebrow{color:#f3ce7e}
+.login-form-wrap{background:#fffaf2}
+.demo-accounts{background:#f7eddd;color:#6f5943}
+.toast{background:#74202a}
+.footer{border-top-color:#e8d9c3;color:#928071}.footer b{color:#a52b34}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #d5a03e;outline-offset:2px}
+@media(max-width:760px){.sidebar{box-shadow:12px 0 35px #32101455}.hero{background:linear-gradient(145deg,#641923,#962531 70%,#b46b35)}}
