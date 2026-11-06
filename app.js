@@ -100,11 +100,11 @@ function render(){
     document.querySelector(".admin-nav").hidden=user.role!=="admin";
     let h; try { h=decodeURIComponent(location.hash.slice(1)||"home"); } catch { h="home"; }
     const asset=h.startsWith("asset-"),id=asset?"asset":h;
-    const map={home:"Inicio",machines:"Equipos",incidents:"Incidencias",academy:"Academia",knowledge:"Conocimiento experto",products:"Producto Damm",assistant:"DAM Bot",admin:"Administración"};
+    const map={home:"Inicio",machines:"Equipos",incidents:"Incidencias",academy:"Academia",knowledge:"Conocimiento experto",products:"Producto Damm",assistant:"DAM Bot",experience:"Experiencia cervecera",admin:"Administración"};
     $("#current-section").textContent=map[id]||"Inicio";
     document.querySelectorAll(".nav-link").forEach(a=>a.classList.toggle("active",a.dataset.view===id));
     $("#sidebar").classList.remove("open");
-    const pages={home,machines:machinesPage,qr:qrPage,incidents:incidentsPage,academy,knowledge:knowledgePage,products:productsPage,admin:adminPage};
+    const pages={home,machines:machinesPage,qr:qrPage,incidents:incidentsPage,academy,knowledge:knowledgePage,products:productsPage,experience:experiencePage,admin:adminPage};
     view.innerHTML=h==="admin"&&user.role!=="admin"?home():asset?machineDetail(h.slice(6)):id==="assistant"?assistant():id.startsWith("product-")?productDetail(Number(id.slice(8))):(pages[h]||home)();
     view.focus({preventScroll:true});
   } catch(error) {
@@ -190,4 +190,44 @@ document.addEventListener("submit",e=>{
  e.preventDefault();const field=$("#shift-note-text"),value=field.value.trim();if(!value)return;
  let notes=[];try{notes=JSON.parse(localStorage.getItem("dt-learning-notes")||"[]")}catch{}
  notes.unshift({text:value,date:new Date().toLocaleString("es-ES")});localStorage.setItem("dt-learning-notes",JSON.stringify(notes.slice(0,30)));toast("Nota guardada en este navegador");render();
+});
+
+
+/* DAMTARIK EXPERIENCE — juego de cultura cervecera y retos */
+const funQuestions=[
+ {q:"¿Qué ingrediente aporta gran parte del amargor y aroma característico?",a:["Lúpulo","Agua","Levadura"],ok:0,why:"El lúpulo aporta compuestos aromáticos y amargor."},
+ {q:"¿Qué ingrediente transforma los azúcares durante la fermentación?",a:["Malta","Levadura","Vidrio"],ok:1,why:"La levadura transforma azúcares en alcohol y dióxido de carbono durante la fermentación."},
+ {q:"¿Qué describe mejor la malta?",a:["Cereal preparado para la elaboración","Un tipo de vaso","Una técnica de enfriamiento"],ok:0,why:"La malta se obtiene normalmente de cereal germinado y secado."},
+ {q:"¿Qué significa maridaje?",a:["Combinar bebida y comida","Medir la espuma","Etiquetar botellas"],ok:0,why:"El maridaje busca armonía o contraste entre bebida y alimento."},
+ {q:"¿Qué aspecto visual se observa al servir?",a:["Color y espuma","Solo el tamaño de la botella","El código de barras"],ok:0,why:"Color, espuma y claridad son observaciones sensoriales visuales."}
+];
+const funChallenges=["Describe tres aromas que asociarías a una cerveza: cereal, cítrico o floral.","Compara visualmente dos tonos de cerveza y describe sus diferencias.","Identifica qué aporta cada ingrediente: agua, malta, lúpulo y levadura.","Piensa en un plato que combine con una cerveza de perfil tostado.","Explica en dos frases por qué es importante cuidar el servicio."];
+function getFunState(){try{return JSON.parse(localStorage.getItem("dt-fun-state")||'{"score":0,"done":[]}')}catch{return {score:0,done:[]}}}
+function experiencePage(){
+ const st=getFunState(),next=funQuestions.findIndex((q,i)=>!st.done.includes(i));
+ const qIndex=next<0?0:next,q=funQuestions[qIndex];
+ const badges=[{n:"Primer paso",d:"Completa una pregunta",ok:st.done.length>=1,i:"✦"},{n:"Curioso",d:"Completa tres preguntas",ok:st.done.length>=3,i:"✧"},{n:"Maestro cervecero",d:"Completa las cinco preguntas",ok:st.done.length>=5,i:"♛"}];
+ return head("DAMTARIK / EXPERIENCIA","El lado más divertido de la cerveza","Aprende jugando: curiosidades, pequeños retos y logros. Todo en modo demostración.")+
+ '<section class="fun-hero"><div><p class="eyebrow">BEER KNOWLEDGE CLUB</p><h2>¿Cuánto sabes del universo cervecero?</h2><p>Responde, suma puntos y desbloquea insignias. Puedes repetir el juego cuando quieras.</p><span class="fun-score">✦ '+st.score+' puntos · '+st.done.length+'/5 preguntas</span></div><div class="fun-hero-art" aria-hidden="true"><span>🍺</span><i>✦</i><b>360°</b></div></section>'+
+ '<div class="fun-grid"><section class="panel fun-quiz"><div class="panel-head"><div><p>RETO DE CONOCIMIENTO</p><h2>Pregunta '+(st.done.length>=5?5:st.done.length+1)+' de 5</h2></div><span class="tag amber">QUIZ</span></div>'+
+ (st.done.length>=5?'<div class="fun-finished"><span>🏆</span><h3>¡Reto completado!</h3><p>Has terminado las cinco preguntas. Puedes volver a empezar para mejorar tu puntuación.</p><button class="btn primary" data-fun-reset>Volver a jugar ↻</button></div>':'<h3 class="fun-question">'+q.q+'</h3><div class="fun-answers">'+q.a.map((x,i)=>'<button class="fun-answer" data-fun-answer="'+qIndex+'" data-fun-choice="'+i+'">'+x+'</button>').join("")+'</div><p class="help" id="fun-feedback" aria-live="polite">Elige una respuesta para continuar.</p>')+
+ '</section><section class="panel fun-badges"><div class="panel-head"><div><p>TU COLECCIÓN</p><h2>Insignias</h2></div><span class="tag">'+badges.filter(b=>b.ok).length+'/3</span></div><div class="fun-badge-list">'+badges.map(b=>'<article class="fun-badge '+(b.ok?'unlocked':'locked')+'"><span>'+b.i+'</span><div><b>'+b.n+'</b><small>'+b.d+'</small></div><strong>'+(b.ok?'✓':'🔒')+'</strong></article>').join("")+'</div></section></div>'+
+ '<section class="panel fun-challenge"><div class="panel-head"><div><p>RULETA DE IDEAS</p><h2>Un reto para hoy</h2></div><span class="tag amber">ALEATORIO</span></div><div id="fun-challenge-text" class="fun-challenge-text">Pulsa el botón y descubre tu siguiente mini-reto.</div><button class="btn gold" data-fun-challenge>🎲 Dame un reto</button></section>'+
+ '<section class="fun-facts"><article><span>01 / INGREDIENTES</span><h3>Cuatro protagonistas</h3><p>Agua, malta, lúpulo y levadura cumplen funciones distintas en la elaboración.</p></article><article><span>02 / SENSORIAL</span><h3>Más que sabor</h3><p>El aspecto, el aroma, la textura y el gusto forman parte de una cata descriptiva.</p></article><article><span>03 / CULTURA</span><h3>Un mundo de estilos</h3><p>Las recetas, ingredientes y procesos dan lugar a perfiles muy diferentes.</p></article></section>'+
+ '<div class="safety-note">Juego educativo y contenido general. Puntuación e insignias guardadas solo en este navegador; no se sincronizan entre dispositivos.</div>';
+}
+document.addEventListener("click",e=>{
+ const answer=e.target.closest("[data-fun-answer]");
+ if(answer){
+  const q=funQuestions[Number(answer.dataset.funAnswer)],choice=Number(answer.dataset.funChoice),st=getFunState();
+  if(st.done.includes(Number(answer.dataset.funAnswer)))return;
+  const ok=choice===q.ok;st.done.push(Number(answer.dataset.funAnswer));if(ok)st.score+=10;
+  localStorage.setItem("dt-fun-state",JSON.stringify(st));
+  const area=$("#fun-feedback");if(area)area.textContent=(ok?"¡Correcto! +10 puntos. ":"¡Casi! ")+q.why+" Avanza para ver la siguiente pregunta.";
+  answer.parentElement.querySelectorAll("button").forEach((b,i)=>{b.disabled=true;if(i===q.ok)b.classList.add("is-correct");else if(i===choice)b.classList.add("is-wrong")});
+  const next=document.createElement("button");next.className="btn primary";next.textContent=st.done.length>=5?"Ver resultado →":"Siguiente pregunta →";next.dataset.go="experience";answer.parentElement.after(next);
+  return;
+ }
+ if(e.target.closest("[data-fun-reset]")){localStorage.setItem("dt-fun-state",JSON.stringify({score:0,done:[]}));render();return}
+ if(e.target.closest("[data-fun-challenge]")){const target=$("#fun-challenge-text");if(target)target.textContent=funChallenges[Math.floor(Math.random()*funChallenges.length)];}
 });
