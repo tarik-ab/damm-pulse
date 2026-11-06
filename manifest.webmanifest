@@ -1,14 +1,14 @@
 {
   "id": "./",
-  "name": "Damtarik",
-  "short_name": "Damtarik",
+  "name": "DammPulse 360",
+  "short_name": "DammPulse",
   "description": "Plataforma de conocimiento, formación y soporte industrial",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#f4f3ed",
-  "theme_color": "#172a24",
+  "background_color": "#f20d0d",
+  "theme_color": "#f20d0d",
   "icons": [
     {
       "src": "icon.svg",
