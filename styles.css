@@ -79,8 +79,9 @@ body {
 }
 
 .brand-mark {
-  background: linear-gradient(135deg, #ffe4a0, #d49b35) !important;
-  color: #681a22 !important;
+  background: var(--brand-red) !important;
+  background-image: none !important;
+  color: #ffffff !important;
 }
 
 .quick-card:hover,
