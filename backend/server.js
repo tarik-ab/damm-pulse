@@ -161,7 +161,7 @@ app.post("/api/auth/register",async (req,res) => {
     const password = String(req.body.password || "");
     if (name.length < 2 || name.length > 80) return res.status(400).json({error:"Introduce un nombre válido."});
     if (!/^[a-z0-9._-]{3,32}$/.test(username) || username === String(process.env.ADMIN_USERNAME || "Tarik").toLowerCase()) return res.status(400).json({error:"Nombre de usuario no válido o reservado."});
-    if (!/^[^\s@]+@[^\s@]+\\.[^\s@]+$/.test(email)) return res.status(400).json({error:"Introduce un correo electrónico válido."});
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({error:"Introduce un correo electrónico válido."});
     if (password.length < 12) return res.status(400).json({error:"La contraseña debe tener al menos 12 caracteres."});
     const hash = await bcrypt.hash(password,12);
     const result = db.prepare("INSERT INTO users (name,username,email,department,password_hash,role) VALUES (?,?,?,?,?,'user')")
