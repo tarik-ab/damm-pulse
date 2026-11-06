@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
   <title id="title">Damm+</title>
-  <rect width="512" height="512" fill="#f4140d"/>
+  <rect width="512" height="512" fill="#FF0000"/>
   <g fill="#fff" font-family="Old English Text MT, UnifrakturCook, Cloister Black, Georgia, serif" font-weight="900">
     <text x="45" y="315" font-size="188" letter-spacing="-14">Damm</text>
   </g>
