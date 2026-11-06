@@ -29,3 +29,10 @@ Todo el contenido actual es ficticio. No contiene procedimientos reales ni debe 
 3. Incorporar búsqueda semántica/IA con fuentes aprobadas y registro de referencias.
 4. Añadir transcripción de audio con revisión humana obligatoria.
 5. Añadir métricas basadas en datos reales autorizados.
+
+## Backend MariaDB (preparado, pendiente de despliegue)
+El directorio `backend/` contiene una API Node.js y el esquema MariaDB para registro, inicio de sesión y administración centralizada de usuarios. Incluye hash bcrypt, roles, auditoría, paginación y protección del endpoint administrativo.
+
+**Importante:** GitHub Pages no ejecuta el backend. Para tener cuentas compartidas entre dispositivos hay que desplegar `backend/` en un servidor con Node.js y conectar una instancia MariaDB. Después se debe configurar el frontend con la URL pública de la API. Hasta completar ese despliegue, el inicio de sesión existente sigue siendo una demo local con datos en el navegador.
+
+Las credenciales de administración se configuran como secretos privados del servidor (`ADMIN_USERNAME` y `ADMIN_PASSWORD`). No deben escribirse en archivos públicos del repositorio. Usa una contraseña larga y única; el backend exige al menos 12 caracteres.
