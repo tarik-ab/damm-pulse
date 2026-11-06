@@ -1,7 +1,7 @@
 /* Damm+ — versión sólida sin degradados */
 :root {
-  --brand-red: #f20d0d;
-  --brand-red-dark: #d70000;
+  --brand-red: #FF0000;
+  --brand-red-dark: #D90000;
   --gold: #e0a12e;
   --paper: #f7f1e6;
   --ink: #321d20;
@@ -93,8 +93,8 @@ body {
 
 /* Identidad visual: rojo puro, uniforme y sin degradados */
 :root {
-  --brand-red: #e50914;
-  --brand-red-dark: #c9000b;
+  --brand-red: #FF0000;
+  --brand-red-dark: #D90000;
   --brand-red-soft: #fff0f0;
 }
 
@@ -168,7 +168,7 @@ input:focus,
 textarea:focus,
 select:focus {
   border-color: var(--brand-red) !important;
-  box-shadow: 0 0 0 2px rgba(229, 9, 20, .10);
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, .14);
 }
 
 button,
