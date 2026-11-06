@@ -184,3 +184,62 @@ button,
   background: var(--brand-red);
   color: #fff;
 }
+
+
+/* Refuerzo visual global: rojo puro visible en los elementos principales */
+:root {
+  --brand-red: #FF0000 !important;
+  --brand-red-dark: #D60000 !important;
+  --brand-red-soft: #FFF0F0 !important;
+}
+.sidebar,
+.hero,
+.detail-banner,
+.product-intro,
+.machines-banner,
+.login-story,
+.admin-hero,
+.auth-backdrop,
+.auth-submit,
+.btn.primary,
+.btn.green,
+.btn.gold,
+.brand-mark,
+.nav-link.active,
+.nav-link[aria-current="page"],
+button.primary,
+button.is-primary,
+.experience-hero,
+.experience-banner,
+.quiz-option.selected,
+.progress-fill,
+.progress-bar > span {
+  background: #FF0000 !important;
+  background-color: #FF0000 !important;
+  background-image: none !important;
+  border-color: #FF0000 !important;
+}
+.sidebar,
+.hero,
+.detail-banner,
+.product-intro,
+.machines-banner,
+.login-story,
+.admin-hero,
+.auth-backdrop,
+.brand-mark,
+.nav-link.active,
+.nav-link[aria-current="page"],
+.btn.primary,
+.btn.green,
+.btn.gold,
+.auth-submit {
+  color: #FFFFFF !important;
+}
+.btn.primary:hover,
+.btn.green:hover,
+.btn.gold:hover,
+.auth-submit:hover {
+  background: #D60000 !important;
+  background-image: none !important;
+}
