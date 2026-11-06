@@ -191,7 +191,8 @@
   <div id="modal-root"></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script src="app.js?v=20261106-admin-stars"></script>
+  <script>window.DAMMPULSE_API_URL = "https://dammpulse-api-production.up.railway.app";</script>
+  <script src="app.js?v=20261106-sqlite-live"></script>
   <script>
     (() => {
       const finishSplash = () => document.body.classList.remove('damm-splash-running');
