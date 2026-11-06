@@ -426,3 +426,37 @@ body,.main-area,.view{background:var(--paper);color:var(--ink)}
 .industrial-gallery-grid figcaption strong{font:800 14px Manrope}
 @media(max-width:760px){.industrial-gallery-grid{grid-template-columns:1fr 1fr}.industrial-gallery-grid figure:last-child{grid-column:1/-1}}
 @media(max-width:430px){.industrial-gallery-grid{grid-template-columns:1fr}.industrial-gallery-grid figure:last-child{grid-column:auto}.industrial-gallery-grid figure{height:210px}}
+
+
+/* DammPulse red identity: signature red with light, readable surfaces */
+:root{--green:#E50914;--red:#E50914;--red-deep:#B80712;--red-soft:#fff0f1;--red-line:#f2c8cb}
+.brand-mark{background:#E50914!important;color:#fff!important;box-shadow:0 7px 20px #e5091430}
+.nav-link:hover{background:#3a292b;color:#fff}
+.nav-link.active{background:#48272b;color:#fff;box-shadow:inset 3px 0 #ff525a}
+.nav-link.active>span,.nav-link:hover>span{color:#ff737a}
+.nav-link i{color:#ff9da2}
+.btn.primary,.btn.auth-submit,.btn.green{background:#E50914;border-color:#E50914;color:#fff}
+.btn.primary:hover,.btn.auth-submit:hover,.btn.green:hover{background:#B80712;border-color:#B80712}
+.eyebrow{color:#C10D19}
+.topbar{border-bottom:2px solid #f0c9cc}
+.demo-tag{color:#B80712;background:#fff0f1;border:1px solid #f2c8cb}
+.q-icon,.machine-symbol{color:#E50914;background:#fff0f1}
+.quick-card{border-top:2px solid #f0c2c6}
+.panel-head p,.stat-label{color:#a80d18}
+.footer{border-top:2px solid #E50914}
+.sparkle-gif{pointer-events:none;object-fit:contain}
+.sparkle-gif-hero{position:absolute;width:120px;height:120px;right:12px;top:0;opacity:.82;mix-blend-mode:screen}
+.sparkle-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 14px;color:#c10d19;font:800 10px Manrope;letter-spacing:1.7px}
+.sparkle-divider img{width:42px;height:42px;object-fit:contain}
+.admin-lock-message{text-align:center;padding:32px 22px;max-width:640px;margin:auto}
+.admin-lock-star{display:grid;place-items:center;margin:0 auto 12px;width:54px;height:54px;border-radius:17px;background:#fff0f1;color:#E50914;font-size:27px}
+.admin-lock-message h2{margin:0 0 8px;color:#172a24;font:800 22px Manrope}
+.admin-lock-message p{color:#66756c;line-height:1.7}
+.admin-nav{border:1px solid #63343a44}
+@media(prefers-reduced-motion:no-preference){
+ .brand-mark{animation:redPulse 3.6s ease-in-out infinite}
+ .nav-link.active>span{animation:starTurn 5s linear infinite}
+}
+@keyframes redPulse{0%,100%{box-shadow:0 7px 20px #e5091430}50%{box-shadow:0 7px 28px #e5091460}}
+@keyframes starTurn{0%,88%,100%{transform:rotate(0) scale(1)}92%{transform:rotate(18deg) scale(1.2)}96%{transform:rotate(-14deg) scale(1.15)}}
+@media(max-width:760px){.sparkle-gif-hero{width:76px;height:76px;right:4px}.sparkle-divider img{width:30px;height:30px}}
