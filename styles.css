@@ -360,89 +360,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 @media(prefers-reduced-motion:reduce){.beer-extra-tile img{transition:none}.beer-extra-tile:hover img{transform:none}}
 
 
-/* DAMTARIK — tema rojo sólido */
-:root {
-  --brand-red: #FF0000;
-  --brand-red-dark: #D60000;
-  --green: #FF0000;
-  --gold: #FFD400;
-  --paper: #FFF8F0;
-  --ink: #321D20;
-  --ink2: #54252A;
-  --muted: #81736D;
-  --line: #EADFD3;
-  --white: #FFFFFF;
+/* Acentos rojos de marca; conservar la paleta y superficies originales */
+:root { --green: #E50914; }
+.btn.primary {
+  background: #E50914;
+  border-color: #E50914;
+  color: #FFFFFF;
 }
-.sidebar,
-.hero,
-.detail-banner,
-.product-intro,
-.machines-banner,
-.login-story,
-.admin-hero,
-.auth-root,
-.auth-backdrop,
-.btn.primary,
-.btn.green,
-.btn.gold,
-.auth-submit,
-.message.user,
-.brand-mark,
-.nav-link.active,
-.nav-link[aria-current="page"],
-.experience-hero,
-.experience-banner,
-.quiz-option.selected,
-.progress-fill,
-.progress-bar > span,
-button.primary,
-button.is-primary {
-  background: #FF0000 !important;
-  background-color: #FF0000 !important;
-  background-image: none !important;
-  border-color: #FF0000 !important;
-}
-.sidebar,
-.hero,
-.detail-banner,
-.product-intro,
-.machines-banner,
-.login-story,
-.admin-hero,
-.auth-backdrop,
-.brand-mark,
-.nav-link.active,
-.nav-link[aria-current="page"],
-.btn.primary,
-.btn.green,
-.btn.gold,
-.auth-submit {
-  color: #FFFFFF !important;
-}
-.btn.primary:hover,
-.btn.green:hover,
-.btn.gold:hover,
-.auth-submit:hover {
-  background: #D60000 !important;
-  background-image: none !important;
-}
-a,
-.link,
-.accent,
-.text-accent,
-.section-kicker,
-.eyebrow,
-.stat-value,
-.brand-light,
-.nav-link:hover {
-  color: #FF0000;
-}
-.quick-card:hover,
-.machine-card:hover,
-.product-card:hover,
-.experience-card:hover,
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: #FF0000 !important;
-}
+.btn.primary:hover { background: #C9000B; border-color: #C9000B; }
+.brand-mark { background: #E50914; color: #FFFFFF; }
+.nav-link.active { box-shadow: inset 3px 0 #E50914; }
