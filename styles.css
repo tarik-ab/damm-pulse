@@ -16,6 +16,105 @@ body {
   color: var(--ink);
 }
 
+body.splash-active {
+  overflow: hidden;
+}
+
+body.splash-active .app-shell {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body:not(.splash-active) .splash-screen {
+  display: none;
+}
+
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #e60707;
+  z-index: 9999;
+  overflow: hidden;
+  animation: splashFadeOut 1.8s ease-in-out 1.5s forwards;
+}
+
+.brand-lockup {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(90vw, 1100px);
+  height: min(32vw, 320px);
+}
+
+.word-damm {
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: clamp(5rem, 13vw, 18rem);
+  line-height: 0.78;
+  letter-spacing: -0.08em;
+  opacity: 0;
+  transform: translateX(-18px);
+  animation: revealDamm 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.35s;
+  text-rendering: geometricPrecision;
+}
+
+.plus {
+  color: #e2b23f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: clamp(4rem, 9vw, 15rem);
+  line-height: 0.8;
+  margin-left: 0.08em;
+  opacity: 0;
+  transform: translateX(0) scale(0.7);
+  animation: movePlus 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.55s;
+  text-rendering: geometricPrecision;
+}
+
+@keyframes revealDamm {
+  0% {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes movePlus {
+  0% {
+    opacity: 0;
+    transform: translateX(0) scale(0.7);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(120px) scale(1);
+  }
+}
+
+@keyframes splashFadeOut {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .sidebar,
 .hero,
 .detail-banner,
