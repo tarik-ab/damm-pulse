@@ -3,37 +3,146 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#E50914">
-  <meta name="description" content="DammPulse 360: plataforma de conocimiento, formación y soporte industrial.">
-  <title>DammPulse 360 | Industrial Knowledge Platform</title>
+  <!-- Color corporativo Rojo Estrella Damm -->
+  <meta name="theme-color" content="#B8040B">
+  <meta name="description" content="DammPulse: plataforma de conocimiento, formación y soporte industrial.">
+  <title>DammPulse+ | Industrial Knowledge Platform</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="styles.css?v=20261106-red-admin">
+  <link rel="stylesheet" href="styles.css?v=20261106-industrial-gallery">
   <style>
-    .damm-splash{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;overflow:hidden;background:#172a24;opacity:1;visibility:visible}
-    .damm-splash__logo{display:flex;align-items:center;justify-content:center;white-space:nowrap;color:#fff;font-family:Georgia,"Times New Roman",serif;font-weight:900;font-size:clamp(5rem,19vw,12rem);line-height:.8;letter-spacing:-.09em}
-    .damm-splash__d{position:relative;z-index:1}
-    .damm-splash__rest{display:inline-block;max-width:0;overflow:hidden;opacity:0;letter-spacing:-.09em;animation:damm-reveal .72s cubic-bezier(.2,.8,.2,1) 1.05s forwards}
-    .damm-splash__plus{position:relative;z-index:2;margin-left:.06em;color:#ffd51f;font-family:Arial,sans-serif;font-size:.72em;line-height:1;letter-spacing:0;transform:translateX(-.05em);animation:damm-plus-move .9s cubic-bezier(.2,.8,.2,1) 1.05s forwards}
-    .damm-splash{animation:damm-splash-out .6s ease 2.65s forwards}
-    body.damm-splash-running{overflow:hidden}
-    body.damm-splash-running .app-shell{visibility:hidden;opacity:0}
-    .app-shell{transition:opacity .35s ease}
-    @keyframes damm-reveal{to{max-width:4em;opacity:1}}
-    @keyframes damm-plus-move{to{transform:translateX(0)}}
-    @keyframes damm-splash-out{to{opacity:0;visibility:hidden;pointer-events:none}}
-    @media(prefers-reduced-motion:reduce){.damm-splash,.damm-splash__rest,.damm-splash__plus{animation-duration:.01ms!important;animation-delay:0ms!important}.app-shell{transition:none}}
+    /* Fondo rojo estilo Estrella Damm */
+    .damm-splash {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #B8040B; /* Rojo Estrella Damm */
+      opacity: 1;
+      visibility: visible;
+    }
+    .damm-splash__logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 900;
+      font-size: clamp(5rem, 19vw, 12rem);
+      line-height: .8;
+      letter-spacing: -.09em;
+    }
+    .damm-splash__d {
+      position: relative;
+      z-index: 1;
+    }
+    .damm-splash__rest {
+      display: inline-block;
+      max-width: 0;
+      overflow: hidden;
+      opacity: 0;
+      letter-spacing: -.09em;
+      animation: damm-reveal .72s cubic-bezier(.2, .8, .2, 1) 1.05s forwards;
+    }
+    .damm-splash__plus {
+      position: relative;
+      z-index: 2;
+      margin-left: .06em;
+      color: #ffd51f; /* Amarillo de la estrella / acento Damm */
+      font-family: Arial, sans-serif;
+      font-size: .72em;
+      line-height: 1;
+      letter-spacing: 0;
+      transform: translateX(-.05em);
+      animation: damm-plus-move .9s cubic-bezier(.2, .8, .2, 1) 1.05s forwards;
+    }
+    .damm-splash {
+      animation: damm-splash-out .6s ease 2.65s forwards;
+    }
+    body.damm-splash-running {
+      overflow: hidden;
+    }
+    body.damm-splash-running .app-shell {
+      visibility: hidden;
+      opacity: 0;
+    }
+    .app-shell {
+      transition: opacity .35s ease;
+    }
+    
+    /* Estilos personalizados sin el círculo para la marca de la barra lateral */
+    .brand-damm-plus {
+      font-family: Georgia, serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem 0;
+    }
+    .brand-damm-plus .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      line-height: 1;
+    }
+    .brand-damm-plus .brand-plus {
+      color: #ffd51f;
+      font-family: Arial, sans-serif;
+    }
+    .brand-damm-plus small {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      opacity: 0.75;
+      margin-top: 4px;
+      font-family: sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    @keyframes damm-reveal {
+      to { max-width: 4em; opacity: 1; }
+    }
+    @keyframes damm-plus-move {
+      to { transform: translateX(0); }
+    }
+    @keyframes damm-splash-out {
+      to { opacity: 0; visibility: hidden; pointer-events: none; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .damm-splash, .damm-splash__rest, .damm-splash__plus {
+        animation-duration: .01ms!important;
+        animation-delay: 0ms!important;
+      }
+      .app-shell {
+        transition: none;
+      }
+    }
   </style>
 </head>
 <body class="damm-splash-running">
+  <!-- Pantalla de bienvenida / Splash screen en rojo Estrella Damm -->
   <div class="damm-splash" id="damm-splash" aria-hidden="true">
-    <div class="damm-splash__logo"><span class="damm-splash__d">D</span><span class="damm-splash__rest">amm</span><span class="damm-splash__plus">+</span></div>
+    <div class="damm-splash__logo">
+      <span class="damm-splash__d">D</span><span class="damm-splash__rest">amm</span><span class="damm-splash__plus">+</span>
+    </div>
   </div>
+
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#home"><span class="brand-mark">D</span><span>DAMM<span class="brand-light">PULSE</span><small>INDUSTRIAL KNOWLEDGE 360</small></span></a>
+      <!-- Marca sin el círculo de antes, reemplazado por DAMM+ -->
+      <a class="brand brand-damm-plus" href="#home">
+        <span class="brand-title">DAMM<span class="brand-plus">+</span> PULSE</span>
+        <small>INDUSTRIAL KNOWLEDGE PLATFORM</small>
+      </a>
+
       <div class="side-caption">PLATAFORMA</div>
       <nav class="main-nav" aria-label="Navegación principal">
         <a href="#home" data-view="home" class="nav-link active"><span>⌂</span> Inicio</a>
@@ -47,24 +156,42 @@
         <a href="#admin" data-view="admin" class="nav-link admin-nav"><span>✦</span> Administración <i>PRIVADO</i></a>
       </nav>
       <div class="sidebar-bottom">
-        <div class="profile"><div class="avatar" id="profile-avatar">TA</div><div class="profile-copy"><strong id="profile-name">Tarik</strong><small id="profile-role">Administrador</small></div><button class="logout-mini" data-logout aria-label="Cerrar sesión">↪</button></div>
+        <div class="profile">
+          <div class="avatar" id="profile-avatar">TA</div>
+          <div class="profile-copy">
+            <strong id="profile-name">Tarik</strong>
+            <small id="profile-role">Administrador</small>
+          </div>
+          <button class="logout-mini" data-logout aria-label="Cerrar sesión">↪</button>
+        </div>
         <div class="side-disclaimer">Proyecto académico · No oficial</div>
       </div>
     </aside>
+
     <main class="main-area">
       <header class="topbar">
         <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button>
-        <div class="crumb">DAMMPULSE 360 <span>/</span> <strong id="current-section">Inicio</strong></div>
-        <div class="top-actions"><button class="btn small" id="install-app" hidden>Instalar app ↓</button><span class="demo-tag"><span class="pulse"></span> DEMO CONTROLADA</span><span class="top-avatar" id="top-avatar">TA</span></div>
+        <div class="crumb">DAMM+ PULSE <span>/</span> <strong id="current-section">Inicio</strong></div>
+        <div class="top-actions">
+          <button class="btn small" id="install-app" hidden>Instalar app ↓</button>
+          <span class="demo-tag"><span class="pulse"></span> DEMO CONTROLADA</span>
+          <span class="top-avatar" id="top-avatar">TA</span>
+        </div>
       </header>
       <div id="view" class="view" tabindex="-1"></div>
-      <footer class="footer"><span>DAMMPULSE 360 <b>·</b> PROYECTO ACADÉMICO</span><span>Diseñado por <strong>Tarik</strong></span><span>Información operativa real: solo fuentes aprobadas.</span></footer>
+      <footer class="footer">
+        <span>DAMM+ PULSE <b>·</b> PROYECTO ACADÉMICO</span>
+        <span>Diseñado por <strong>Tarik</strong></span>
+        <span>Información operativa real: solo fuentes aprobadas.</span>
+      </footer>
     </main>
   </div>
+
   <div id="auth-root" class="auth-root" hidden></div>
   <div id="modal-root"></div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=20261106-red-admin"></script>
+
+  <script src="app.js?v=20261106-admin-stars"></script>
   <script>
     (() => {
       const finishSplash = () => document.body.classList.remove('damm-splash-running');
