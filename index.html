@@ -174,6 +174,7 @@
         <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button>
         <div class="crumb">DAMM+ PULSE <span>/</span> <strong id="current-section">Inicio</strong></div>
         <div class="top-actions">
+          <a class="btn small primary install-entry" href="#installations">↓ Instalar DammPulse</a>
           <button class="btn small" id="install-app" hidden>Instalar app ↓</button>
           <span class="demo-tag"><span class="pulse"></span> DEMO CONTROLADA</span>
           <span class="top-avatar" id="top-avatar">TA</span>
@@ -193,7 +194,7 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script>window.DAMMPULSE_API_URL = "https://dammpulse-api-production.up.railway.app";</script>
-  <script src="app.js?v=20261106-sqlite-live"></script>
+  <script src="app.js?v=20261110-install-entry"></script>
   <script>
     (() => {
       const finishSplash = () => document.body.classList.remove('damm-splash-running');
