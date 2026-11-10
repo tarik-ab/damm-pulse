@@ -1,7 +1,8 @@
 const fs = require("node:fs/promises");
 const path = require("node:path");
 const sharp = require("sharp");
-const pngToIco = require("png-to-ico");
+const pngToIcoModule = require("png-to-ico");
+const pngToIco = pngToIcoModule.default || pngToIcoModule;
 
 async function main() {
   const root = path.resolve(__dirname, "..");
