@@ -7,9 +7,8 @@
   <meta name="theme-color" content="#B8040B">
   <meta name="description" content="DAMM+: plataforma de conocimiento, formación y soporte industrial.">
   <title>DAMM+ | Industrial Knowledge Platform</title>
-  <link rel="manifest" href="manifest.webmanifest?v=20261110-pwa-png">
-  <link rel="icon" href="icon.svg?v=20261110-original-browser-icon" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="pwa-icon-192.png?v=20261110-pwa-png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="stylesheet" href="styles.css?v=20261110-red-brand">
@@ -54,7 +53,7 @@
       position: relative;
       z-index: 2;
       margin-left: .06em;
-      color: #ffd51f;
+      color: #ffd51f; /* Amarillo de la estrella / acento Damm */
       font-family: Arial, sans-serif;
       font-size: .72em;
       line-height: 1;
@@ -62,6 +61,52 @@
       transform: translateX(-.05em);
       animation: damm-plus-move .9s cubic-bezier(.2, .8, .2, 1) 1.05s forwards;
     }
+    .damm-splash {
+      animation: damm-splash-out .6s ease 2.65s forwards;
+    }
+    body.damm-splash-running {
+      overflow: hidden;
+    }
+    body.damm-splash-running .app-shell {
+      visibility: hidden;
+      opacity: 0;
+    }
+    .app-shell {
+      transition: opacity .35s ease;
+    }
+    
+    /* Estilos personalizados sin el círculo para la marca de la barra lateral */
+    .brand-damm-plus {
+      font-family: Georgia, serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem 0;
+    }
+    .brand-damm-plus .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      line-height: 1;
+    }
+    .brand-damm-plus .brand-plus {
+      color: #ffd51f;
+      font-family: Arial, sans-serif;
+    }
+    .brand-damm-plus small {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      opacity: 0.75;
+      margin-top: 4px;
+      font-family: sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
     @keyframes damm-reveal {
       to { max-width: 4em; opacity: 1; }
     }
@@ -71,7 +116,15 @@
     @keyframes damm-splash-out {
       to { opacity: 0; visibility: hidden; pointer-events: none; }
     }
-    /* ... truncated for brevity in this patch; keeps the original stylesheet intact */
+    @media(prefers-reduced-motion:reduce) {
+      .damm-splash, .damm-splash__rest, .damm-splash__plus {
+        animation-duration: .01ms!important;
+        animation-delay: 0ms!important;
+      }
+      .app-shell {
+        transition: none;
+      }
+    }
   </style>
 </head>
 <body class="damm-splash-running">
@@ -85,6 +138,10 @@
       <div class="side-caption">PLATAFORMA</div>
       <nav class="main-nav" aria-label="Navegación principal">
         <a href="#home" data-view="home" class="nav-link active"><span>⌂</span> Inicio</a>
+        <a href="#machines" data-view="machines" class="nav-link"><span>▦</span> Equipos y QR <b>04</b></a>
+        <a href="#qr" data-view="qr" class="nav-link"><span>⌗</span> Generador QR</a>
+        <a href="#incidents" data-view="incidents" class="nav-link"><span>◉</span> Incidencias</a>
+        <a href="#academy" data-view="academy" class="nav-link"><span>▤</span> Academia</a>
         <a href="#knowledge" data-view="knowledge" class="nav-link"><span>✳</span> Conocimiento experto</a>
         <a href="#products" data-view="products" class="nav-link"><span>✦</span> Producto Damm</a>
         <a href="#assistant" data-view="assistant" class="nav-link"><span>✧</span> DAM Bot <i>DEMO</i></a>
@@ -107,7 +164,7 @@
     <main class="main-area">
       <header class="topbar">
         <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button>
-        <div class="crumb">DAMM+ <span>/</span> <strong id="current-section">Inicio</strong></div>
+        <div class="crumb">DAMM+ PULSE <span>/</span> <strong id="current-section">Inicio</strong></div>
         <div class="top-actions">
           <a class="btn small primary install-entry" href="#installations">↓ Instalar DAMM+</a>
           <button class="btn small" id="install-app" hidden>Instalar app ↓</button>
@@ -117,7 +174,7 @@
       </header>
       <div id="view" class="view" tabindex="-1"></div>
       <footer class="footer">
-        <span>DAMM+ <b>·</b> PROYECTO ACADÉMICO</span>
+        <span>DAMM+ PULSE <b>·</b> PROYECTO ACADÉMICO</span>
         <span>Diseñado por <strong>Tarik</strong></span>
         <span>Información operativa real: solo fuentes aprobadas.</span>
       </footer>
@@ -129,7 +186,7 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script>window.DAMMPULSE_API_URL = "https://dammpulse-api-production.up.railway.app";</script>
-  <script src="app.js?v=20261110-pwa-restore"></script>
+  <script src="app.js?v=20261110-dplus-desktop"></script>
   <script>
     (() => {
       const finishSplash = () => document.body.classList.remove('damm-splash-running');
