@@ -1,5 +1,5 @@
 -- DAMM+ - SQLite
--- El servidor ejecuta estas instrucciones automáticamente al iniciar.
+-- El servidor ejecuta estas instrucciones automatically al iniciar.
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS users (
