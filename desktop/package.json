@@ -1,17 +1,49 @@
 {
   "name": "dammpulse-desktop",
   "version": "1.0.0",
-  "description": "DammPulse 360 desktop for Linux",
+  "description": "DammPulse 360 desktop for Linux and Windows",
   "main": "main.cjs",
   "author": "DammPulse",
   "license": "UNLICENSED",
-  "scripts": { "start": "electron .", "dist": "electron-builder --linux AppImage" },
-  "devDependencies": { "electron": "^39.0.0", "electron-builder": "^26.0.12" },
+  "scripts": {
+    "start": "electron .",
+    "dist:linux": "electron-builder --linux AppImage",
+    "dist:windows": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^39.0.0",
+    "electron-builder": "^26.0.12"
+  },
   "build": {
     "appId": "com.dammpulse.desktop",
     "productName": "DammPulse 360",
-    "directories": { "output": "dist" },
-    "files": ["main.cjs", "preload.cjs", "package.json"],
-    "linux": { "target": ["AppImage"], "category": "Office", "artifactName": "DammPulse-360-${version}-${arch}.${ext}" }
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.cjs",
+      "preload.cjs",
+      "package.json"
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Office",
+      "artifactName": "DammPulse-360-${version}-${arch}.${ext}"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "DammPulse-360-Setup-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "DammPulse 360"
+    }
   }
 }
