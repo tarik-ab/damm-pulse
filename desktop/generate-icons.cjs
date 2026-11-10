@@ -4,7 +4,7 @@ const sharp = require("sharp");
 const pngToIco = require("png-to-ico");
 
 async function main() {
-  const root = path.resolve(__dirname, "../..");
+  const root = path.resolve(__dirname, "..");
   const svg = await fs.readFile(path.join(root, "icon.svg"));
   const pngPath = path.join(__dirname, "icon.png");
   const icoPath = path.join(__dirname, "icon.ico");
