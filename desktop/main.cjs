@@ -5,7 +5,7 @@ const API_URL = process.env.DAMMPULSE_API_URL || "https://dammpulse-api-producti
 function createWindow() {
   const win = new BrowserWindow({
     width: 1440, height: 940, minWidth: 980, minHeight: 680,
-    title: "DammPulse 360", backgroundColor: "#f4f3ed", autoHideMenuBar: true,
+    title: "DammPulse 360", icon: path.join(__dirname, "icon.png"), backgroundColor: "#f4f3ed", autoHideMenuBar: true,
     webPreferences: { preload: path.join(__dirname, "preload.cjs"), contextIsolation: true, nodeIntegration: false, sandbox: true }
   });
   win.webContents.setWindowOpenHandler(({ url }) => {
