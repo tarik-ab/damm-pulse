@@ -100,11 +100,11 @@ function render(){
     document.querySelector(".admin-nav").hidden=false;
     let h; try { h=decodeURIComponent(location.hash.slice(1)||"home"); } catch { h="home"; }
     const asset=h.startsWith("asset-"),id=asset?"asset":h;
-    const map={home:"Inicio",machines:"Equipos",incidents:"Incidencias",academy:"Academia",knowledge:"Conocimiento experto",products:"Producto Damm",assistant:"DAM Bot",admin:"Administración"};
+    const map={home:"Inicio",machines:"Equipos",incidents:"Incidencias",academy:"Academia",knowledge:"Conocimiento experto",products:"Producto Damm",assistant:"DAM Bot",admin:"Administración",installations:"Instalaciones"};
     $("#current-section").textContent=map[id]||"Inicio";
     document.querySelectorAll(".nav-link").forEach(a=>a.classList.toggle("active",a.dataset.view===id));
     $("#sidebar").classList.remove("open");
-    const pages={home,machines:machinesPage,qr:qrPage,incidents:incidentsPage,academy,knowledge:knowledgePage,products:productsPage,admin:adminPage};
+    const pages={home,machines:machinesPage,qr:qrPage,incidents:incidentsPage,academy,knowledge:knowledgePage,products:productsPage,admin:adminPage,installations:installationsPage};
     view.innerHTML=h==="admin"?adminLockedPage():asset?machineDetail(h.slice(6)):id==="assistant"?assistant():id.startsWith("product-")?productDetail(Number(id.slice(8))):(pages[h]||home)();
     view.focus({preventScroll:true});
   } catch(error) {
@@ -145,6 +145,18 @@ let deferredInstallPrompt=null;
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstallPrompt=e;const b=$("#install-app");if(b)b.hidden=false});
 const installButton=$("#install-app");if(installButton){installButton.hidden=false;installButton.addEventListener("click",async()=>{if(deferredInstallPrompt){deferredInstallPrompt.prompt();await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;return}const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);toast(ios?"En Safari: Compartir → Añadir a pantalla de inicio.":"En Chrome: menú ⋮ → Instalar aplicación o Añadir a pantalla de inicio.");});}
 if("serviceWorker"in navigator&&location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+
+
+function installationsPage(){
+ const cards=[
+  {id:"android",icon:"▣",name:"Android",format:"APK",detail:"Para móviles y tabletas Android.",status:"COMPILANDO",url:"https://github.com/tarik-ab/dammpulse-mobile./actions/runs/42774238163",available:false},
+  {id:"windows",icon:"▰",name:"Windows",format:"EXE",detail:"Instalador de escritorio para Windows 10/11 de 64 bits.",status:"LISTO PARA DESCARGAR",url:"https://github.com/tarik-ab/damm-pulse/actions/runs/42774233077",available:true},
+  {id:"linux",icon:"▱",name:"Linux",format:"AppImage",detail:"Aplicación de escritorio para Linux x64.",status:"LISTO PARA DESCARGAR",url:"https://github.com/tarik-ab/damm-pulse/actions/runs/42774233077",available:true}
+ ];
+ return head("DAMMPULSE 360 / DESCARGAS","Instalaciones","Elige el instalador correspondiente al dispositivo. Los archivos se publican en los artefactos de cada compilación.")+
+ '<div class="install-grid">'+cards.map(c=>'<article class="panel install-card"><div class="install-card-top"><span class="install-icon">'+c.icon+'</span><span class="install-status '+(c.available?'ready':'building')+'">'+c.status+'</span></div><p class="eyebrow">'+c.format+'</p><h2>'+c.name+'</h2><p>'+c.detail+'</p>'+(c.available?'<a class="btn primary install-download" href="'+c.url+'" target="_blank" rel="noopener">Ver descarga '+c.format+' ↗</a>':'<a class="btn install-download" href="'+c.url+'" target="_blank" rel="noopener">Ver progreso de compilación ↗</a>')+'</article>').join("")+'</div>'+
+ '<div class="safety-note">En GitHub Actions, abre la compilación y descarga el archivo de la sección «Artifacts». Los artefactos temporales caducan; se preparará una publicación estable para distribuirlos.</div>';
+}
 
 function home(){
  const photoCards=[
