@@ -149,8 +149,8 @@ if("serviceWorker"in navigator&&location.protocol.startsWith("http"))window.addE
 
 function installationsPage(){
  const cards=[
-  {id:"windows",icon:"▰",name:"Windows",format:"EXE",detail:"Instalador para Windows 10/11 de 64 bits.",status:"DESCARGA DIRECTA",url:"https://github.com/tarik-ab/damm-pulse/releases/download/v1.0.0/DammPulse-Setup.exe"},
-  {id:"linux",icon:"▱",name:"Linux",format:"AppImage",detail:"Aplicación para Linux x64. Descarga y ejecuta el archivo AppImage.",status:"DESCARGA DIRECTA",url:"https://github.com/tarik-ab/damm-pulse/releases/download/v1.0.0/DammPulse-Linux-x64.AppImage"},
+  {id:"windows",icon:"▰",name:"Windows · Desktop D+",format:"EXE",detail:"Versión Desktop actualizada con el nuevo icono D+ para Windows 10/11 de 64 bits.",status:"DESKTOP D+ ACTUALIZADO",url:"https://github.com/tarik-ab/damm-pulse/releases/download/v1.0.0/DammPulse-Setup.exe?download=1"},
+  {id:"linux",icon:"▱",name:"Linux · Desktop D+",format:"AppImage",detail:"Versión Desktop actualizada con el nuevo icono D+ para Linux x64.",status:"DESKTOP D+ ACTUALIZADO",url:"https://github.com/tarik-ab/damm-pulse/releases/download/v1.0.0/DammPulse-Linux-x64.AppImage?download=1"},
   {id:"android",icon:"▣",name:"Android",format:"APK",detail:"Instalador para móviles y tabletas Android.",status:"DESCARGA DIRECTA",url:"https://github.com/tarik-ab/dammpulse-mobile./releases/download/v1.0.0/DammPulse-Android.apk"}
  ];
  return head("DAMMPULSE 360 / DESCARGAS","Instalaciones","El botón descarga el archivo. Después ábrelo para completar la instalación en tu dispositivo.")+
