@@ -1,9 +1,9 @@
 {
-  "name": "dammpulse-desktop",
+  "name": "damm-plus-desktop",
   "version": "1.0.0",
-  "description": "DammPulse 360 desktop for Linux and Windows",
+  "description": "DAMM+ desktop for Linux and Windows",
   "main": "main.cjs",
-  "author": "DammPulse",
+  "author": "DAMM+",
   "license": "UNLICENSED",
   "scripts": {
     "start": "electron .",
@@ -17,8 +17,8 @@
     "png-to-ico": "^3.0.1"
   },
   "build": {
-    "appId": "com.dammpulse.desktop",
-    "productName": "DammPulse 360",
+    "appId": "com.dammplus.desktop",
+    "productName": "DAMM+",
     "directories": {
       "output": "dist"
     },
@@ -34,7 +34,7 @@
         "AppImage"
       ],
       "category": "Office",
-      "artifactName": "DammPulse-360-${version}-${arch}.${ext}",
+      "artifactName": "DAMM+-${version}-${arch}.${ext}",
       "icon": "icon.png"
     },
     "win": {
@@ -42,7 +42,7 @@
         "nsis",
         "zip"
       ],
-      "artifactName": "DammPulse-360-${version}-${arch}.${ext}",
+      "artifactName": "DAMM+-${version}-${arch}.${ext}",
       "icon": "icon.ico"
     },
     "nsis": {
@@ -50,7 +50,7 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "DammPulse 360"
+      "shortcutName": "DAMM+"
     }
   }
 }

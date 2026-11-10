@@ -1,4 +1,4 @@
--- DammPulse 360 - SQLite
+-- DAMM+ - SQLite
 -- El servidor ejecuta estas instrucciones automáticamente al iniciar.
 PRAGMA foreign_keys = ON;
 

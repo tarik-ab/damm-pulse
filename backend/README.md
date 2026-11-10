@@ -1,4 +1,4 @@
-# DammPulse API + MariaDB
+# DAMM+ API + MariaDB
 
 Backend preparado para desplegar por separado de GitHub Pages. GitHub Pages solo sirve archivos estáticos; no ejecuta Node.js ni MariaDB.
 

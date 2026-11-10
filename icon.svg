@@ -1,6 +1,5 @@
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DammPulse logo">
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DAMM+ logo">
   <rect width="512" height="512" fill="#E30613"/>
-
   <path fill="#FFFFFF" fill-rule="evenodd" d="
     M 157 53
     C 119 58 84 79 62 112
@@ -30,7 +29,6 @@
     L 179 101
     Z
   "/>
-
   <path fill="#E30613" fill-rule="evenodd" d="
     M 171 149
     C 168 150 164 151 160 153
@@ -55,7 +53,6 @@
     L 194 187
     Z
   "/>
-
   <g fill="#F5D100">
     <rect x="330" y="125" width="24" height="155" rx="8"/>
     <rect x="270" y="183" width="145" height="24" rx="8"/>
