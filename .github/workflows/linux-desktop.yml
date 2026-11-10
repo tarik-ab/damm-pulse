@@ -1,0 +1,32 @@
+name: Build DammPulse Linux desktop
+on:
+  push:
+    branches: [main]
+    paths:
+      - "desktop/**"
+      - ".github/workflows/linux-desktop.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install desktop dependencies
+        working-directory: desktop
+        run: npm install
+      - name: Build Linux AppImage
+        working-directory: desktop
+        run: npm run dist
+      - name: Upload Linux installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: dammpulse-linux-x64
+          path: desktop/dist/*.AppImage
+          if-no-files-found: error
+          retention-days: 14
