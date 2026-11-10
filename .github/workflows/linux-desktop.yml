@@ -1,4 +1,4 @@
-name: Build DammPulse desktop installers
+name: Build and publish DammPulse desktop installers
 on:
   push:
     branches: [main]
@@ -7,7 +7,7 @@ on:
       - ".github/workflows/linux-desktop.yml"
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   build-linux:
     runs-on: ubuntu-latest
@@ -51,3 +51,36 @@ jobs:
           path: desktop/dist/*.exe
           if-no-files-found: error
           retention-days: 14
+  publish-release:
+    needs: [build-linux, build-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Linux installer
+        uses: actions/download-artifact@v4
+        with:
+          name: dammpulse-linux-x64
+          path: release
+      - name: Rename Linux installer
+        run: |
+          file="$(find release -maxdepth 1 -type f -name '*.AppImage' | head -n 1)"
+          test -n "$file"
+          cp "$file" release/DammPulse-Linux-x64.AppImage
+      - name: Download Windows installer
+        uses: actions/download-artifact@v4
+        with:
+          name: dammpulse-windows-x64
+          path: release
+      - name: Rename Windows installer
+        run: |
+          file="$(find release -maxdepth 1 -type f -name '*.exe' | head -n 1)"
+          test -n "$file"
+          cp "$file" release/DammPulse-Setup.exe
+      - name: Publish permanent downloads
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.0
+          name: DammPulse 1.0.0
+          make_latest: true
+          files: |
+            release/DammPulse-Setup.exe
+            release/DammPulse-Linux-x64.AppImage
