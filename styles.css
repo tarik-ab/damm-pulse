@@ -482,3 +482,14 @@ input:focus,select:focus,textarea:focus,.select:focus,.field input:focus,.field 
 .admin-login-card{max-width:620px;margin:0 auto}.admin-login-mark{width:62px;height:62px;display:grid;place-items:center;border-radius:18px;background:#ff0000;color:white;font-size:27px;margin-bottom:18px}
 .admin-login-form{display:grid;gap:15px;max-width:440px;margin-top:22px}.admin-login-form label{display:grid;gap:7px;font-size:11px;font-weight:700}.admin-login-form input{border:1px solid #eadfe1;border-radius:9px;padding:13px;background:white}
 .admin-login-error{color:#b00016;font-size:11px;min-height:18px}.admin-security-note{background:#fff4f4;border-left:3px solid #ff0000;border-radius:0 9px 9px 0;padding:13px;color:#63343b;font-size:10px;line-height:1.7;margin-top:18px}
+
+.install-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:20px}
+.install-card{padding:22px;display:flex;flex-direction:column;min-height:260px}
+.install-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;gap:8px}
+.install-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:#fff0f1;color:#B8040B;font-size:25px;font-weight:900}
+.install-status{font-size:9px;font-weight:900;letter-spacing:.7px;border-radius:20px;padding:7px 9px}
+.install-status.ready{background:#edf7ed;color:#28733a}
+.install-status.building{background:#fff4df;color:#946000}
+.install-card h2{font:800 24px Manrope;margin:2px 0 8px}
+.install-card>p:not(.eyebrow){color:var(--muted);font-size:12px;line-height:1.7;min-height:42px}
+.install-download{margin-top:auto;align-self:flex-start}
