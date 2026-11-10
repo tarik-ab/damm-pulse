@@ -3,17 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Color corporativo Rojo Estrella Damm -->
-  <meta name="theme-color" content="#B8040B">
+  <meta name="theme-color" content="#C8102E">
   <meta name="description" content="DAMM+: plataforma de conocimiento, formación y soporte industrial.">
   <title>DAMM+ | Industrial Knowledge Platform</title>
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="styles.css?v=20261110-red-brand">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- QRCode.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            damm: {
+              red: '#C8102E',      /* Rojo plano Estrella Damm */
+              darkred: '#9B0A20',  /* Rojo oscuro plano */
+              deepred: '#6E0012',  /* Rojo profundo plano */
+              gold: '#FFD51F',     /* Amarillo / Dorado plano */
+              dark: '#141414',     /* Negro plano */
+              surface: '#F4F5F7'   /* Gris superficie plano */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    /* Fondo rojo estilo Estrella Damm */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F4F5F7;
+      color: #1e293b;
+      min-height: 100vh;
+    }
+
+    /* -------------------------------------------------------------
+       SPLASH SCREEN ESTRELLA DAMM (COLOR ROJO SÓLIDO Y LISO)
+    ------------------------------------------------------------- */
     .damm-splash {
       position: fixed;
       inset: 0;
@@ -21,21 +53,23 @@
       display: grid;
       place-items: center;
       overflow: hidden;
-      background: #B8040B; /* Rojo Estrella Damm */
+      background: #C8102E; /* Rojo plano liso */
       opacity: 1;
       visibility: visible;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     .damm-splash__logo {
       display: flex;
       align-items: center;
       justify-content: center;
       white-space: nowrap;
-      color: #fff;
+      color: #ffffff;
       font-family: Georgia, "Times New Roman", serif;
       font-weight: 900;
-      font-size: clamp(5rem, 19vw, 12rem);
+      font-size: clamp(4rem, 16vw, 10rem);
       line-height: .8;
       letter-spacing: -.09em;
+      user-select: none;
     }
     .damm-splash__d {
       position: relative;
@@ -47,22 +81,22 @@
       overflow: hidden;
       opacity: 0;
       letter-spacing: -.09em;
-      animation: damm-reveal .72s cubic-bezier(.2, .8, .2, 1) 1.05s forwards;
+      animation: damm-reveal .72s cubic-bezier(.2, .8, .2, 1) 0.8s forwards;
     }
     .damm-splash__plus {
       position: relative;
       z-index: 2;
       margin-left: .06em;
-      color: #ffd51f; /* Amarillo de la estrella / acento Damm */
+      color: #FFD51F; /* Amarillo plano */
       font-family: Arial, sans-serif;
       font-size: .72em;
       line-height: 1;
       letter-spacing: 0;
       transform: translateX(-.05em);
-      animation: damm-plus-move .9s cubic-bezier(.2, .8, .2, 1) 1.05s forwards;
+      animation: damm-plus-move .9s cubic-bezier(.2, .8, .2, 1) 0.8s forwards;
     }
     .damm-splash {
-      animation: damm-splash-out .6s ease 2.65s forwards;
+      animation: damm-splash-out .6s ease 2.5s forwards;
     }
     body.damm-splash-running {
       overflow: hidden;
@@ -73,38 +107,6 @@
     }
     .app-shell {
       transition: opacity .35s ease;
-    }
-    
-    /* Estilos personalizados sin el círculo para la marca de la barra lateral */
-    .brand-damm-plus {
-      font-family: Georgia, serif;
-      font-weight: 900;
-      font-size: 1.4rem;
-      letter-spacing: -0.03em;
-      color: #ffffff;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      padding: 0.5rem 0;
-    }
-    .brand-damm-plus .brand-title {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      line-height: 1;
-    }
-    .brand-damm-plus .brand-plus {
-      color: #ffd51f;
-      font-family: Arial, sans-serif;
-    }
-    .brand-damm-plus small {
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      opacity: 0.75;
-      margin-top: 4px;
-      font-family: sans-serif;
-      font-weight: 600;
-      text-transform: uppercase;
     }
 
     @keyframes damm-reveal {
@@ -125,77 +127,1160 @@
         transition: none;
       }
     }
+
+    /* -------------------------------------------------------------
+       BARRA LATERAL (SIDEBAR ROJO SÓLIDO Y LISO)
+    ------------------------------------------------------------- */
+    .sidebar {
+      background-color: #C8102E; /* Rojo liso sin degradados */
+      color: #ffffff;
+      width: 275px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      border-right: 3px solid #FFD51F; /* Borde sólido amarillo */
+      transition: transform 0.3s ease;
+    }
+
+    .brand-damm-plus {
+      font-family: Georgia, serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      padding: 0.25rem 0;
+    }
+    .brand-damm-plus .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      line-height: 1;
+    }
+    .brand-damm-plus .brand-plus {
+      color: #FFD51F;
+      font-family: Arial, sans-serif;
+    }
+    .brand-damm-plus small {
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      opacity: 1;
+      margin-top: 5px;
+      font-family: sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #FFD51F;
+    }
+
+    .side-caption {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      color: #FFD51F;
+      padding: 1rem 1.25rem 0.35rem 1.25rem;
+      text-transform: uppercase;
+    }
+
+    .main-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 0 0.75rem;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 0.9rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #ffffff;
+      transition: background-color 0.15s ease;
+      text-decoration: none;
+    }
+
+    .nav-link span.nav-icon {
+      font-size: 1.1rem;
+      width: 1.5rem;
+      text-align: center;
+      display: inline-block;
+      color: #FFD51F;
+    }
+
+    .nav-link:hover {
+      background-color: #9B0A20; /* Rojo oscuro plano */
+      color: #ffffff;
+    }
+
+    .nav-link.active {
+      background-color: #9B0A20; /* Fondo plano para activo */
+      color: #ffffff;
+      font-weight: 800;
+      border-left: 4px solid #FFD51F; /* Borde activo amarillo sólido */
+    }
+
+    .nav-link b {
+      background: #FFD51F;
+      color: #C8102E;
+      font-size: 0.65rem;
+      padding: 2px 7px;
+      border-radius: 9999px;
+      margin-left: auto;
+      font-weight: 800;
+    }
+
+    .nav-link i {
+      font-style: normal;
+      font-size: 0.6rem;
+      background: #FFD51F;
+      color: #6E0012;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: auto;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sidebar-bottom {
+      padding: 1rem;
+      border-top: 2px solid #FFD51F;
+      background-color: #9B0A20; /* Rojo oscuro plano */
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem;
+      background-color: #6E0012;
+      border-radius: 0.5rem;
+      border: 1px solid #FFD51F;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #C8102E;
+      color: #FFD51F;
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #FFD51F;
+    }
+
+    .profile-copy strong {
+      display: block;
+      color: #ffffff;
+      font-size: 0.85rem;
+      line-height: 1.2;
+    }
+
+    .profile-copy small {
+      color: #FFD51F;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .logout-mini {
+      background: #9B0A20;
+      border: 1px solid #FFD51F;
+      color: #ffffff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .logout-mini:hover {
+      background: #FFD51F;
+      color: #C8102E;
+    }
+
+    .side-disclaimer {
+      font-size: 0.65rem;
+      color: #ffffff;
+      text-align: center;
+      margin-top: 0.75rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* -------------------------------------------------------------
+       TOPBAR & MAIN AREA (DISEÑO SÓLIDO Y LISO)
+    ------------------------------------------------------------- */
+    .topbar {
+      height: 64px;
+      background: #ffffff;
+      border-bottom: 2px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* Toast plano */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #1e293b;
+      color: #fff;
+      padding: 0.85rem 1.25rem;
+      border-radius: 0.5rem;
+      border-left: 5px solid #FFD51F;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 9999;
+      transform: translateY(150%);
+      transition: transform 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+    }
   </style>
 </head>
-<body class="damm-splash-running">
+<body class="damm-splash-running flex flex-col min-h-screen">
+
+  <!-- 1. Splash Screen (Rojo Sólido) -->
   <div class="damm-splash" id="damm-splash" aria-hidden="true">
-    <div class="damm-splash__logo"><span class="damm-splash__d">D</span><span class="damm-splash__rest">amm</span><span class="damm-splash__plus">+</span></div>
+    <div class="damm-splash__logo">
+      <span class="damm-splash__d">D</span>
+      <span class="damm-splash__rest">amm</span>
+      <span class="damm-splash__plus">+</span>
+    </div>
   </div>
 
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <a class="brand brand-damm-plus" href="#home" aria-label="DAMM+"><span class="brand-title"><span>DAMM</span><span class="brand-plus">+</span></span><small>INDUSTRIAL KNOWLEDGE PLATFORM</small></a>
-      <div class="side-caption">PLATAFORMA</div>
-      <nav class="main-nav" aria-label="Navegación principal">
-        <a href="#home" data-view="home" class="nav-link active"><span>⌂</span> Inicio</a>
-        <a href="#machines" data-view="machines" class="nav-link"><span>▦</span> Equipos y QR <b>04</b></a>
-        <a href="#qr" data-view="qr" class="nav-link"><span>⌗</span> Generador QR</a>
-        <a href="#incidents" data-view="incidents" class="nav-link"><span>◉</span> Incidencias</a>
-        <a href="#academy" data-view="academy" class="nav-link"><span>▤</span> Academia</a>
-        <a href="#knowledge" data-view="knowledge" class="nav-link"><span>✳</span> Conocimiento experto</a>
-        <a href="#products" data-view="products" class="nav-link"><span>✦</span> Producto Damm</a>
-        <a href="#assistant" data-view="assistant" class="nav-link"><span>✧</span> DAM Bot <i>DEMO</i></a>
-        <a href="#installations" data-view="installations" class="nav-link"><span>⇩</span> Instalaciones</a>
-        <a href="#admin" data-view="admin" class="nav-link admin-nav"><span>✦</span> Administración <i>PRIVADO</i></a>
-      </nav>
+  <!-- Contenedor Principal -->
+  <div class="app-shell flex flex-1 min-h-screen">
+    
+    <!-- Backdrop móvil -->
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/80 z-40 hidden md:hidden"></div>
+
+    <!-- 2. Barra Lateral (Sidebar Rojo Sólido Estrella Damm) -->
+    <aside class="sidebar fixed md:sticky top-0 left-0 z-50 md:z-auto h-screen -translate-x-full md:translate-x-0 overflow-y-auto" id="sidebar">
+      <div>
+        <div class="p-4 border-b-2 border-yellow-400">
+          <a class="brand brand-damm-plus" href="#home" aria-label="DAMM+">
+            <span class="brand-title">
+              <span>DAMM</span>
+              <span class="brand-plus">+</span>
+            </span>
+            <small>INDUSTRIAL KNOWLEDGE PLATFORM</small>
+          </a>
+        </div>
+
+        <div class="side-caption">PLATAFORMA OPERATIVA</div>
+
+        <!-- Menú de navegación principal -->
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="#home" data-view="home" class="nav-link active">
+            <span class="nav-icon">⌂</span> Inicio
+          </a>
+          <a href="#machines" data-view="machines" class="nav-link">
+            <span class="nav-icon">▦</span> Equipos y QR <b>04</b>
+          </a>
+          <a href="#qr" data-view="qr" class="nav-link">
+            <span class="nav-icon">⌗</span> Generador QR
+          </a>
+          <a href="#incidents" data-view="incidents" class="nav-link">
+            <span class="nav-icon">◉</span> Incidencias
+          </a>
+          <a href="#academy" data-view="academy" class="nav-link">
+            <span class="nav-icon">▤</span> Academia
+          </a>
+          <a href="#knowledge" data-view="knowledge" class="nav-link">
+            <span class="nav-icon">✳</span> Conocimiento experto
+          </a>
+          <a href="#products" data-view="products" class="nav-link">
+            <span class="nav-icon">✦</span> Producto Damm
+          </a>
+          <a href="#assistant" data-view="assistant" class="nav-link">
+            <span class="nav-icon">✧</span> DAM Bot <i>DEMO</i>
+          </a>
+          <a href="#installations" data-view="installations" class="nav-link">
+            <span class="nav-icon">⇩</span> Instalaciones
+          </a>
+          <a href="#admin" data-view="admin" class="nav-link">
+            <span class="nav-icon">✦</span> Administración <i>PRIVADO</i>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Perfil de usuario -->
       <div class="sidebar-bottom">
         <div class="profile">
           <div class="avatar" id="profile-avatar">TA</div>
           <div class="profile-copy">
             <strong id="profile-name">Tarik</strong>
-            <small id="profile-role">Administrador</small>
+            <small id="profile-role">Administrador Planta</small>
           </div>
-          <button class="logout-mini" data-logout aria-label="Cerrar sesión">↪</button>
+          <button class="logout-mini" id="btn-logout" title="Cerrar sesión" aria-label="Cerrar sesión">↪</button>
         </div>
         <div class="side-disclaimer">Proyecto académico · No oficial</div>
       </div>
     </aside>
 
-    <main class="main-area">
+    <!-- 3. Área Principal -->
+    <main class="main-area flex-1 flex flex-col min-w-0 bg-slate-100">
+      
+      <!-- Topbar -->
       <header class="topbar">
-        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button>
-        <div class="crumb">DAMM+ PULSE <span>/</span> <strong id="current-section">Inicio</strong></div>
-        <div class="top-actions">
-          <a class="btn small primary install-entry" href="#installations">↓ Instalar DAMM+</a>
-          <button class="btn small" id="install-app" hidden>Instalar app ↓</button>
-          <span class="demo-tag"><span class="pulse"></span> DEMO CONTROLADA</span>
-          <span class="top-avatar" id="top-avatar">TA</span>
+        <div class="flex items-center gap-3">
+          <button class="md:hidden text-2xl text-slate-800 p-1 hover:text-damm-red font-bold" id="menu-toggle" aria-label="Abrir menú">☰</button>
+          <div class="crumb text-xs md:text-sm font-bold tracking-wide text-slate-700">
+            <span class="text-damm-red">DAMM+ PULSE</span> 
+            <span class="text-slate-400 mx-1">/</span> 
+            <strong id="current-section" class="text-slate-900">Inicio</strong>
+          </div>
+        </div>
+
+        <div class="top-actions flex items-center gap-2 md:gap-4">
+          <button class="hidden sm:inline-flex items-center gap-1.5 bg-damm-red hover:bg-damm-darkred text-white text-xs font-bold px-4 py-2 rounded-lg border-2 border-damm-gold transition" onclick="showToast('Comprobando versión PWA instalable...')">
+            ↓ Instalar DAMM+
+          </button>
+          
+          <div class="flex items-center gap-2 bg-emerald-100 text-emerald-800 border-2 border-emerald-300 text-xs px-3 py-1 rounded-full font-bold">
+            <span class="pulse"></span>
+            <span class="hidden sm:inline">DEMO CONTROLADA</span>
+            <span class="sm:hidden">DEMO</span>
+          </div>
+
+          <div class="w-8 h-8 rounded-full bg-damm-red text-damm-gold font-black text-xs flex items-center justify-center border-2 border-damm-gold" id="top-avatar">
+            TA
+          </div>
         </div>
       </header>
-      <div id="view" class="view" tabindex="-1"></div>
-      <footer class="footer">
-        <span>DAMM+ PULSE <b>·</b> PROYECTO ACADÉMICO</span>
-        <span>Diseñado por <strong>Tarik</strong></span>
-        <span>Información operativa real: solo fuentes aprobadas.</span>
+
+      <!-- Vistas dinámicas -->
+      <div id="view" class="view flex-1 p-4 md:p-8 max-w-7xl w-full mx-auto" tabindex="-1">
+        <!-- El contenido se inyecta dinámicamente mediante JS -->
+      </div>
+
+      <!-- Pie de página (Footer) -->
+      <footer class="footer bg-white border-t-2 border-slate-200 py-4 px-6 text-xs text-slate-600 flex flex-col sm:flex-row items-center justify-between gap-2 font-medium">
+        <div>
+          <span class="font-bold text-slate-900">DAMM+ PULSE</span> <b class="text-damm-red">·</b> PROYECTO ACADÉMICO
+        </div>
+        <div>
+          Diseñado por <strong class="text-slate-900">Tarik</strong>
+        </div>
+        <div class="text-slate-500 text-center sm:text-right">
+          Información operativa real: solo fuentes aprobadas.
+        </div>
       </footer>
     </main>
   </div>
 
+  <!-- Roots auxiliares -->
   <div id="auth-root" class="auth-root" hidden></div>
   <div id="modal-root"></div>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <div id="toast-message">Mensaje del sistema</div>
+  </div>
 
-  <script>window.DAMMPULSE_API_URL = "https://dammpulse-api-production.up.railway.app";</script>
-  <script src="app.js?v=20261110-dplus-desktop"></script>
+  <!-- Configuración & Script de Control -->
   <script>
+    window.DAMMPULSE_API_URL = "https://dammpulse-api-production.up.railway.app";
+
+    // Control de la Splash Screen
     (() => {
-      const finishSplash = () => document.body.classList.remove('damm-splash-running');
+      const finishSplash = () => {
+        document.body.classList.remove('damm-splash-running');
+      };
       const splash = document.getElementById('damm-splash');
-      splash.addEventListener('animationend', event => {
-        if (event.animationName === 'damm-splash-out') finishSplash();
-      });
-      window.setTimeout(finishSplash, 3400);
+      if (splash) {
+        splash.addEventListener('animationend', event => {
+          if (event.animationName === 'damm-splash-out') finishSplash();
+        });
+        window.setTimeout(finishSplash, 3200);
+      }
     })();
+
+    // Sistema de Toasts informativos
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    // Estado global de datos simulados
+    const state = {
+      currentView: 'home',
+      machines: [
+        { id: 'ENV-01', name: 'Línea Envasado Latas 1', location: 'Planta El Prat - Nieve 2', status: 'Operativo', oee: 89.2, speed: '45.000 latas/h', lastMaintenance: '2026-11-02', alert: null },
+        { id: 'FER-04', name: 'Tanque Fermentación F-04', location: 'Bodega de Elaboración B', status: 'Operativo', temp: '10.5 °C', pressure: '1.4 bar', lastMaintenance: '2026-10-28', alert: null },
+        { id: 'PAS-02', name: 'Pasteurizador Flash P-02', location: 'Línea Bottling 3', status: 'Mantenimiento', oee: 0.0, temp: '72.0 °C', lastMaintenance: 'En proceso', alert: 'Limpieza CIP requerida' },
+        { id: 'ETI-09', name: 'Etiquetadora Krones K-8', location: 'Línea Envasado Botella', status: 'Alarma', oee: 64.5, speed: '12.000 bot/h', lastMaintenance: '2026-10-15', alert: 'Desalineación de fotocélula E-404' }
+      ],
+      incidents: [
+        { id: 'INC-2026-089', title: 'Desalineación fotocélula E-404 en Etiquetadora Krones', machine: 'ETI-09', priority: 'Alta', status: 'En Proceso', date: '2026-11-10 09:15', reporter: 'Tarik' },
+        { id: 'INC-2026-088', title: 'Filtro de vapor sucio en Pasteurizador Flash', machine: 'PAS-02', priority: 'Media', status: 'Abierta', date: '2026-11-09 16:40', reporter: 'J. Martínez' },
+        { id: 'INC-2026-085', title: 'Vibración excesiva en bomba de trasvase B-12', machine: 'FER-04', priority: 'Baja', status: 'Resuelta', date: '2026-11-07 11:20', reporter: 'M. Alarcón' }
+      ],
+      courses: [
+        { id: 'C1', title: 'Protocolos de Seguridad ATEX en Cervecería', duration: '45 min', category: 'Seguridad', progress: 100, status: 'Completado' },
+        { id: 'C2', title: 'Operación Avanzada de Envasadoras Krones', duration: '90 min', category: 'Mantenimiento', progress: 60, status: 'En curso' },
+        { id: 'C3', title: 'Control de Calidad organoléptica y microbiológica', duration: '60 min', category: 'Calidad', progress: 0, status: 'Disponible' },
+        { id: 'C4', title: 'Eficiencia Energética y Recuperación de CO2', duration: '30 min', category: 'Sostenibilidad', progress: 0, status: 'Disponible' }
+      ],
+      products: [
+        { name: 'Estrella Damm', style: 'Lager Mediterránea', abv: '5.4%', desc: 'Elaborada según la receta original de 1876 con ingredientes 100% naturales: cebada, arroz y lúpulo de agricultores locales.', temp: '4-6 °C', color: 'bg-damm-red' },
+        { name: 'Voll-Damm', style: 'Doble Malta', abv: '7.2%', desc: 'Cerveza de cuerpo intenso con el doble de malta, sabor potente y amargor característico.', temp: '6-8 °C', color: 'bg-amber-800' },
+        { name: 'Inedit', style: 'Malt & Wheat Beer', abv: '4.8%', desc: 'Creada por los maestros cerveceros de Damm y Ferran Adrià. Aromas especiados y textura cremosa.', temp: '4-8 °C', color: 'bg-amber-600' },
+        { name: 'Daura', style: 'Lager Sin Gluten', abv: '5.4%', desc: 'La cerveza sin gluten más premiada del mundo, manteniendo todo el sabor de la receta original.', temp: '4-6 °C', color: 'bg-yellow-600' },
+        { name: 'Free Damm', style: '0.0% Alcohol', abv: '0.0%', desc: 'Sabor auténtico recuperando los aromas perdidos durante el proceso de desalcoholización.', temp: '2-4 °C', color: 'bg-blue-600' },
+        { name: 'Bock Damm', style: 'Negra Estilo Munich', abv: '5.4%', desc: 'Cerveza negra de suave tostado, con cuerpo y notas intensas a regaliz y caramelo.', temp: '6-8 °C', color: 'bg-neutral-900' }
+      ]
+    };
+
+    // Vistas con diseño plano sin degradados
+    const views = {
+      home: () => `
+        <div class="space-y-6">
+          <!-- Banner Principal Plano Sólido -->
+          <div class="bg-damm-red rounded-2xl p-6 md:p-8 text-white border-4 border-damm-gold flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden">
+            <div class="space-y-2 max-w-xl z-10">
+              <span class="inline-block bg-damm-gold text-damm-red text-xs font-black px-3 py-1 rounded-md uppercase tracking-wider">Centro de Operaciones</span>
+              <h1 class="text-2xl md:text-4xl font-extrabold font-serif tracking-tight">Bienvenido a DAMM+ Industrial</h1>
+              <p class="text-white text-sm md:text-base font-medium">Plataforma centralizada para monitorización en tiempo real, gestión de mantenimiento y capacitación técnica de planta.</p>
+            </div>
+            <div class="flex flex-wrap gap-3 z-10">
+              <button onclick="switchView('machines')" class="bg-white text-damm-red font-black px-4 py-2.5 rounded-xl hover:bg-slate-100 transition text-sm border-2 border-white">Ver Equipos (04)</button>
+              <button onclick="switchView('assistant')" class="bg-damm-gold text-slate-900 font-black px-4 py-2.5 rounded-xl hover:bg-yellow-400 transition text-sm flex items-center gap-2 border-2 border-damm-gold">✧ DAM Bot</button>
+            </div>
+          </div>
+
+          <!-- Tarjetas KPI Planas -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-white p-5 rounded-2xl border-2 border-slate-200">
+              <div class="flex justify-between items-center text-slate-600 text-xs font-bold uppercase tracking-wider mb-2">
+                <span>Eficiencia OEE Global</span>
+                <span class="text-emerald-700 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded font-black">+2.4%</span>
+              </div>
+              <div class="text-3xl font-black text-slate-900">88.4%</div>
+              <div class="w-full bg-slate-200 h-3 rounded-full mt-3 overflow-hidden border border-slate-300">
+                <div class="bg-emerald-500 h-full" style="width: 88.4%"></div>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border-2 border-slate-200">
+              <div class="flex justify-between items-center text-slate-600 text-xs font-bold uppercase tracking-wider mb-2">
+                <span>Equipos Activos</span>
+                <span class="text-slate-500 font-bold">14 de 16</span>
+              </div>
+              <div class="text-3xl font-black text-slate-900">87.5%</div>
+              <div class="w-full bg-slate-200 h-3 rounded-full mt-3 overflow-hidden border border-slate-300">
+                <div class="bg-damm-red h-full" style="width: 87.5%"></div>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border-2 border-slate-200">
+              <div class="flex justify-between items-center text-slate-600 text-xs font-bold uppercase tracking-wider mb-2">
+                <span>Incidencias Críticas</span>
+                <span class="text-amber-700 font-black">Atención rápida</span>
+              </div>
+              <div class="text-3xl font-black text-amber-600">03</div>
+              <p class="text-xs text-slate-600 font-semibold mt-2">1 en curso · 2 pendientes</p>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border-2 border-slate-200">
+              <div class="flex justify-between items-center text-slate-600 text-xs font-bold uppercase tracking-wider mb-2">
+                <span>Horas de Academia</span>
+                <span class="text-blue-700 font-black">Este mes</span>
+              </div>
+              <div class="text-3xl font-black text-slate-900">142h</div>
+              <p class="text-xs text-emerald-700 font-bold mt-2">92% de cumplimiento ATEX</p>
+            </div>
+          </div>
+
+          <!-- Gráficos y resumen -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-white p-6 rounded-2xl border-2 border-slate-200">
+              <div class="flex justify-between items-center mb-4">
+                <div>
+                  <h3 class="font-black text-slate-900 text-lg">Rendimiento de Producción por Línea</h3>
+                  <p class="text-xs text-slate-500 font-medium">Métricas comparativas OEE del turno actual</p>
+                </div>
+                <span class="text-xs bg-red-100 text-damm-red border-2 border-damm-red px-3 py-1 rounded-full font-black">Turno Mañana</span>
+              </div>
+              <div class="h-64 flex items-center justify-center">
+                <canvas id="chart-oee"></canvas>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-center mb-4">
+                  <h3 class="font-black text-slate-900 text-base">Últimas Incidencias</h3>
+                  <button onclick="switchView('incidents')" class="text-xs text-damm-red font-black hover:underline">Ver todas</button>
+                </div>
+                <div class="space-y-3">
+                  ${state.incidents.slice(0, 3).map(inc => `
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col gap-1">
+                      <div class="flex items-center justify-between">
+                        <span class="text-xs font-black text-slate-900">${inc.id}</span>
+                        <span class="px-2 py-0.5 text-[10px] rounded font-black border ${inc.status === 'En Proceso' ? 'bg-amber-100 text-amber-800 border-amber-300' : inc.status === 'Abierta' ? 'bg-red-100 text-red-800 border-red-300' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}">${inc.status}</span>
+                      </div>
+                      <p class="text-xs font-bold text-slate-800 line-clamp-1">${inc.title}</p>
+                      <span class="text-[11px] text-slate-500 font-semibold">Equipo: ${inc.machine} · ${inc.date}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+              <button onclick="openNewIncidentModal()" class="w-full mt-4 bg-damm-red hover:bg-damm-darkred text-white font-black py-3 rounded-xl text-xs transition border-2 border-damm-gold">
+                + Reportar Nueva Incidencia
+              </button>
+            </div>
+          </div>
+        </div>
+      `,
+
+      machines: () => `
+        <div class="space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 class="text-2xl font-black font-serif text-slate-900">Equipos Industriales y QR</h2>
+              <p class="text-sm text-slate-600 font-medium">Supervisión y control de activos operativos de envasado y elaboración.</p>
+            </div>
+            <button onclick="switchView('qr')" class="bg-damm-red text-white text-xs font-black px-4 py-2.5 rounded-xl hover:bg-damm-darkred transition border-2 border-damm-gold">
+              + Generar Nuevo QR
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            ${state.machines.map(m => `
+              <div class="bg-white rounded-2xl border-2 border-slate-200 p-6 space-y-4">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <span class="text-xs font-black text-damm-red bg-red-100 px-2.5 py-1 rounded-md border border-damm-red">${m.id}</span>
+                    <h3 class="text-lg font-black text-slate-900 mt-2">${m.name}</h3>
+                    <p class="text-xs text-slate-500 font-semibold">${m.location}</p>
+                  </div>
+                  <span class="px-3 py-1 rounded-full text-xs font-black border ${
+                    m.status === 'Operativo' ? 'bg-emerald-100 text-emerald-800 border-emerald-300' :
+                    m.status === 'Mantenimiento' ? 'bg-amber-100 text-amber-800 border-amber-300' : 'bg-red-100 text-red-800 border-red-300'
+                  }">${m.status}</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 pt-2 border-t border-slate-200">
+                  <div class="bg-slate-100 p-3 rounded-xl border border-slate-200">
+                    <span class="text-[11px] text-slate-500 font-bold block">Rendimiento OEE</span>
+                    <span class="text-base font-black text-slate-900">${m.oee}%</span>
+                  </div>
+                  <div class="bg-slate-100 p-3 rounded-xl border border-slate-200">
+                    <span class="text-[11px] text-slate-500 font-bold block">Última Revisión</span>
+                    <span class="text-xs font-black text-slate-900">${m.lastMaintenance}</span>
+                  </div>
+                </div>
+
+                ${m.alert ? `
+                  <div class="bg-red-100 border-2 border-red-300 text-red-900 text-xs p-3 rounded-xl flex items-center gap-2 font-bold">
+                    <span class="font-black text-damm-red">⚠️ Alerta:</span> ${m.alert}
+                  </div>
+                ` : ''}
+
+                <div class="flex gap-2 pt-2">
+                  <button onclick="generateMachineQR('${m.id}', '${m.name}')" class="flex-1 border-2 border-slate-300 hover:bg-slate-100 text-slate-800 text-xs font-black py-2 rounded-xl transition flex items-center justify-center gap-1">
+                    <span class="text-damm-red font-black">⌗</span> Código QR
+                  </button>
+                  <button onclick="showToast('Cargando telemetría en vivo de ${m.id}...');" class="flex-1 bg-slate-900 hover:bg-slate-800 text-white text-xs font-black py-2 rounded-xl transition">
+                    Ver Telemetría
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `,
+
+      qr: () => `
+        <div class="max-w-3xl mx-auto space-y-6">
+          <div>
+            <h2 class="text-2xl font-black font-serif text-slate-900">Generador de Códigos QR Industrial</h2>
+            <p class="text-sm text-slate-600 font-medium">Cree etiquetas de identificación para maquinaria, repuestos y accesos técnicos.</p>
+          </div>
+
+          <div class="bg-white rounded-2xl border-2 border-slate-200 p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-black text-slate-800 mb-1">Identificador de Equipo / Activo</label>
+                <input type="text" id="qr-input-id" value="DAMM-ENV-2026" class="w-full border-2 border-slate-300 rounded-xl px-3 py-2 text-sm font-bold focus:border-damm-red outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-black text-slate-800 mb-1">Nombre o Descripción</label>
+                <input type="text" id="qr-input-name" value="Línea Envasado 1 - Módulo Llenadora" class="w-full border-2 border-slate-300 rounded-xl px-3 py-2 text-sm font-bold focus:border-damm-red outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-black text-slate-800 mb-1">Ubicación Industrial</label>
+                <select id="qr-input-plant" class="w-full border-2 border-slate-300 rounded-xl px-3 py-2 text-sm font-bold focus:border-damm-red outline-none">
+                  <option>Planta El Prat de Llobregat</option>
+                  <option>Planta Sant Sadurní d'Anoia</option>
+                  <option>Planta El Puig (Valencia)</option>
+                  <option>Planta Murcia</option>
+                </select>
+              </div>
+              <button onclick="renderCustomQR()" class="w-full bg-damm-red hover:bg-damm-darkred text-white font-black py-3 rounded-xl text-xs transition border-2 border-damm-gold">
+                Generar Código QR
+              </button>
+            </div>
+
+            <div class="bg-slate-100 rounded-xl p-6 border-2 border-slate-200 flex flex-col items-center justify-center text-center space-y-4">
+              <div id="qrcode-container" class="bg-white p-4 rounded-2xl border-2 border-slate-300"></div>
+              <div>
+                <h4 id="qr-preview-title" class="font-black text-slate-900 text-sm">DAMM-ENV-2026</h4>
+                <p id="qr-preview-desc" class="text-xs text-slate-600 font-semibold">Línea Envasado 1 - Módulo Llenadora</p>
+              </div>
+              <button onclick="showToast('Imprimiendo etiqueta adhesiva industrial...')" class="bg-slate-900 text-white hover:bg-slate-800 text-xs font-black px-4 py-2.5 rounded-xl transition border-2 border-slate-900">
+                🖨 Imprimir Etiqueta
+              </button>
+            </div>
+          </div>
+        </div>
+      `,
+
+      incidents: () => `
+        <div class="space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 class="text-2xl font-black font-serif text-slate-900">Registro de Incidencias Técnicas</h2>
+              <p class="text-sm text-slate-600 font-medium">Gestión de partes de avería, mantenimientos correctivos y asignaciones.</p>
+            </div>
+            <button onclick="openNewIncidentModal()" class="bg-damm-red text-white text-xs font-black px-4 py-2.5 rounded-xl hover:bg-damm-darkred transition border-2 border-damm-gold">
+              + Registrar Incidencia
+            </button>
+          </div>
+
+          <div class="bg-white rounded-2xl border-2 border-slate-200 overflow-hidden">
+            <div class="p-4 border-b-2 border-slate-200 bg-slate-100 flex flex-wrap gap-2 justify-between items-center">
+              <div class="flex gap-2">
+                <button class="px-3 py-1.5 rounded-lg text-xs font-black bg-damm-red text-white">Todas</button>
+                <button class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700 hover:bg-slate-200">En Proceso</button>
+                <button class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700 hover:bg-slate-200">Abiertas</button>
+                <button class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700 hover:bg-slate-200">Resueltas</button>
+              </div>
+              <input type="text" placeholder="Buscar..." class="border-2 border-slate-300 rounded-lg px-3 py-1 text-xs font-bold outline-none focus:border-damm-red">
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs text-slate-700">
+                <thead class="bg-slate-200 text-slate-900 font-black uppercase text-[11px] tracking-wider border-b-2 border-slate-300">
+                  <tr>
+                    <th class="p-4">Código</th>
+                    <th class="p-4">Incidencia / Descripción</th>
+                    <th class="p-4">Equipo</th>
+                    <th class="p-4">Prioridad</th>
+                    <th class="p-4">Estado</th>
+                    <th class="p-4">Fecha</th>
+                    <th class="p-4 text-right">Acción</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y-2 divide-slate-100 font-semibold">
+                  ${state.incidents.map(inc => `
+                    <tr class="hover:bg-slate-50 transition">
+                      <td class="p-4 font-black text-slate-900">${inc.id}</td>
+                      <td class="p-4 font-bold text-slate-900">${inc.title}</td>
+                      <td class="p-4 font-mono font-bold text-slate-700">${inc.machine}</td>
+                      <td class="p-4">
+                        <span class="px-2 py-0.5 rounded font-black border ${
+                          inc.priority === 'Alta' ? 'bg-red-100 text-red-800 border-red-300' :
+                          inc.priority === 'Media' ? 'bg-amber-100 text-amber-800 border-amber-300' : 'bg-slate-100 text-slate-700 border-slate-300'
+                        }">${inc.priority}</span>
+                      </td>
+                      <td class="p-4">
+                        <span class="px-2.5 py-1 rounded-full font-black border ${
+                          inc.status === 'En Proceso' ? 'bg-amber-100 text-amber-800 border-amber-300' :
+                          inc.status === 'Abierta' ? 'bg-red-100 text-red-800 border-red-300' : 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                        }">${inc.status}</span>
+                      </td>
+                      <td class="p-4 text-slate-600">${inc.date}</td>
+                      <td class="p-4 text-right">
+                        <button onclick="showToast('Abriendo expediente ${inc.id}...')" class="text-damm-red font-black hover:underline">Gestionar</button>
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `,
+
+      academy: () => `
+        <div class="space-y-6">
+          <div>
+            <h2 class="text-2xl font-black font-serif text-slate-900">Academia y Capacitación Técnica</h2>
+            <p class="text-sm text-slate-600 font-medium">Módulos de formación certificada para operadores y técnicos de mantenimiento.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            ${state.courses.map(c => `
+              <div class="bg-white rounded-2xl border-2 border-slate-200 p-6 flex flex-col justify-between">
+                <div class="space-y-3">
+                  <div class="flex justify-between items-center">
+                    <span class="bg-red-100 text-damm-red border border-damm-red text-xs font-black px-2.5 py-1 rounded-lg">${c.category}</span>
+                    <span class="text-xs text-slate-600 font-bold">⏱ ${c.duration}</span>
+                  </div>
+                  <h3 class="font-black text-slate-900 text-base leading-snug">${c.title}</h3>
+                  
+                  <div>
+                    <div class="flex justify-between text-xs text-slate-600 font-bold mb-1">
+                      <span>Progreso</span>
+                      <span>${c.progress}%</span>
+                    </div>
+                    <div class="w-full bg-slate-200 h-3 rounded-full overflow-hidden border border-slate-300">
+                      <div class="bg-damm-red h-full" style="width: ${c.progress}%"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-4 mt-4 border-t-2 border-slate-100 flex items-center justify-between">
+                  <span class="text-xs font-black ${c.status === 'Completado' ? 'text-emerald-700' : 'text-slate-700'}">${c.status}</span>
+                  <button onclick="showToast('Iniciando curso: ${c.title}...')" class="bg-damm-red hover:bg-damm-darkred text-white text-xs font-black px-4 py-2 rounded-xl transition border-2 border-damm-gold">
+                    ${c.progress > 0 ? 'Continuar' : 'Iniciar'}
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `,
+
+      knowledge: () => `
+        <div class="space-y-6">
+          <!-- Banner Plano Rojo Sólido -->
+          <div class="bg-damm-red text-white rounded-2xl p-6 md:p-8 border-4 border-damm-gold">
+            <h2 class="text-2xl font-black font-serif mb-2">Conocimiento Experto y Manuales</h2>
+            <p class="text-white text-sm font-medium mb-6">Base de conocimientos unificada para procedimientos CIP, calibraciones y normativas ISO.</p>
+            
+            <div class="relative max-w-xl">
+              <input type="text" placeholder="Buscar procedimiento, código de error E-xxx o manual..." class="w-full bg-white text-slate-900 border-2 border-slate-300 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-damm-gold">
+              <span class="absolute right-4 top-3 text-slate-500 font-bold">🔍</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-5 rounded-2xl border-2 border-slate-200 hover:border-damm-red transition cursor-pointer" onclick="showToast('Abriendo guía CIP...')">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-2xl">🧼</span>
+                <h3 class="font-black text-slate-900 text-base">Protocolo Estándar de Limpieza CIP en Fermentadores</h3>
+              </div>
+              <p class="text-xs text-slate-600 font-medium">Pasos de lavado con sosa y neutralizado para mantener condiciones asépticas.</p>
+              <div class="mt-3 flex gap-2">
+                <span class="bg-red-100 text-damm-red border border-damm-red text-[10px] px-2 py-0.5 rounded font-black">Calidad</span>
+                <span class="bg-slate-200 text-slate-800 text-[10px] px-2 py-0.5 rounded font-black">CIP</span>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border-2 border-slate-200 hover:border-damm-red transition cursor-pointer" onclick="showToast('Abriendo manual Krones...')">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-2xl">⚙️</span>
+                <h3 class="font-black text-slate-900 text-base">Resolución de Errores en Etiquetadoras Krones</h3>
+              </div>
+              <p class="text-xs text-slate-600 font-medium">Códigos de falla recurrentes en sensores ópticos E-400 a E-499 y su corrección.</p>
+              <div class="mt-3 flex gap-2">
+                <span class="bg-red-100 text-damm-red border border-damm-red text-[10px] px-2 py-0.5 rounded font-black">Mantenimiento</span>
+                <span class="bg-slate-200 text-slate-800 text-[10px] px-2 py-0.5 rounded font-black">Krones</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      products: () => `
+        <div class="space-y-6">
+          <div>
+            <h2 class="text-2xl font-black font-serif text-slate-900">Catálogo de Producto Damm</h2>
+            <p class="text-sm text-slate-600 font-medium">Especificaciones técnicas y parámetros organolépticos para supervisión de calidad.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            ${state.products.map(p => `
+              <div class="bg-white rounded-2xl border-2 border-slate-200 overflow-hidden">
+                <div class="${p.color} h-24 p-4 flex items-end justify-between border-b-2 border-slate-200">
+                  <span class="bg-damm-gold text-slate-900 text-xs font-black px-2.5 py-1 rounded-md border border-yellow-500">${p.abv} ABV</span>
+                  <span class="text-white text-xs font-black bg-black px-2.5 py-1 rounded">Servir: ${p.temp}</span>
+                </div>
+                <div class="p-5 space-y-3">
+                  <div>
+                    <span class="text-xs font-black text-damm-red uppercase tracking-wide">${p.style}</span>
+                    <h3 class="text-xl font-black font-serif text-slate-900">${p.name}</h3>
+                  </div>
+                  <p class="text-xs text-slate-600 font-medium leading-relaxed">${p.desc}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `,
+
+      assistant: () => `
+        <div class="max-w-4xl mx-auto space-y-4">
+          <div class="bg-white rounded-2xl border-2 border-slate-200 flex flex-col h-[600px] overflow-hidden">
+            <!-- Header Chat Plano -->
+            <div class="bg-damm-red text-white p-4 flex items-center justify-between border-b-2 border-damm-gold">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-damm-gold text-damm-red flex items-center justify-center font-black text-sm border-2 border-white">
+                  ✧
+                </div>
+                <div>
+                  <h3 class="font-black text-sm">DAM Bot (Asistente Técnico IA)</h3>
+                  <p class="text-xs text-damm-gold font-bold">● Conectado a la API Industrial</p>
+                </div>
+              </div>
+              <button onclick="clearChat()" class="text-xs font-bold text-white bg-black/40 hover:bg-black/60 px-3 py-1 rounded-lg">Limpiar chat</button>
+            </div>
+
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-100">
+              <div class="flex gap-3 items-start">
+                <div class="w-8 h-8 rounded-full bg-damm-red text-damm-gold border-2 border-damm-gold text-xs font-black flex items-center justify-center shrink-0">DAM</div>
+                <div class="bg-white p-3.5 rounded-2xl rounded-tl-none border-2 border-slate-200 text-xs text-slate-800 font-medium max-w-md">
+                  ¡Hola, Tarik! Soy DAM Bot, tu asistente de planta Estrella Damm. ¿En qué puedo ayudarte hoy? Puedes preguntarme sobre errores de maquinaria, protocolos CIP o estado de lotes.
+                </div>
+              </div>
+            </div>
+
+            <!-- Sugerencias rapidas -->
+            <div class="px-4 py-2 bg-slate-200 border-t-2 border-slate-300 flex gap-2 overflow-x-auto text-xs">
+              <button onclick="sendPresetPrompt('¿Cómo resolver error E-404 en etiquetadora?')" class="bg-white border-2 border-slate-300 hover:border-damm-red px-3 py-1 rounded-full shrink-0 font-bold text-slate-800">Error E-404</button>
+              <button onclick="sendPresetPrompt('Protocolo de limpieza CIP en fermentadores')" class="bg-white border-2 border-slate-300 hover:border-damm-red px-3 py-1 rounded-full shrink-0 font-bold text-slate-800">Limpieza CIP</button>
+              <button onclick="sendPresetPrompt('Verificar OEE de la Línea de Envasado 1')" class="bg-white border-2 border-slate-300 hover:border-damm-red px-3 py-1 rounded-full shrink-0 font-bold text-slate-800">OEE Envasado 1</button>
+            </div>
+
+            <!-- Input Box -->
+            <form id="chat-form" onsubmit="handleChatSubmit(event)" class="p-3 bg-white border-t-2 border-slate-200 flex gap-2">
+              <input type="text" id="chat-input" placeholder="Escribe tu consulta técnica..." class="flex-1 border-2 border-slate-300 rounded-xl px-4 py-2.5 text-xs font-bold outline-none focus:border-damm-red">
+              <button type="submit" class="bg-damm-red hover:bg-damm-darkred text-white font-black px-4 py-2.5 rounded-xl text-xs transition border-2 border-damm-gold">
+                Enviar
+              </button>
+            </form>
+          </div>
+        </div>
+      `,
+
+      installations: () => `
+        <div class="space-y-6">
+          <div>
+            <h2 class="text-2xl font-black font-serif text-slate-900">Instalaciones de Producción</h2>
+            <p class="text-sm text-slate-600 font-medium">Red de centros industriales y fábricas de elaboración Damm.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-2xl border-2 border-slate-200 p-6 space-y-3">
+              <span class="bg-damm-red text-white text-xs font-black px-2.5 py-1 rounded-md border border-damm-gold">Planta Principal</span>
+              <h3 class="text-xl font-black text-slate-900">El Prat de Llobregat (Barcelona)</h3>
+              <p class="text-xs text-slate-600 font-medium">Centro de alta capacidad productiva y centro logístico automatizado.</p>
+              <div class="pt-3 border-t-2 border-slate-100 text-xs text-slate-600 space-y-1 font-bold">
+                <p>📍 Av. de l'Alcatel, 1, 08820 El Prat de Llobregat</p>
+                <p>⚡ 10 Líneas operativas de envasado</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border-2 border-slate-200 p-6 space-y-3">
+              <span class="bg-blue-100 text-blue-900 border border-blue-300 text-xs font-black px-2.5 py-1 rounded-md">Centro Agroalimentario</span>
+              <h3 class="text-xl font-black text-slate-900">El Puig (Valencia)</h3>
+              <p class="text-xs text-slate-600 font-medium">Especializada en elaboración de especialidades y envasado multiformato.</p>
+              <div class="pt-3 border-t-2 border-slate-100 text-xs text-slate-600 space-y-1 font-bold">
+                <p>📍 Polígono Industrial Polígono 4, El Puig</p>
+                <p>⚡ 4 Líneas operativas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      admin: () => `
+        <div class="space-y-6">
+          <div class="bg-red-100 border-2 border-damm-red p-4 rounded-2xl text-damm-red text-xs font-black flex items-center justify-between">
+            <span>🔒 ZONA PRIVADA DE ADMINISTRACIÓN DE PLANTA</span>
+            <span class="bg-damm-red text-damm-gold px-2.5 py-0.5 rounded text-[10px] font-black border border-damm-gold">ROL: ADMINISTRADOR</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 space-y-4">
+              <h3 class="font-black text-slate-900 text-base">Estado Servidor de Datos API</h3>
+              <div class="p-3 bg-slate-100 rounded-xl font-mono text-xs font-bold text-slate-800 break-all border border-slate-300">
+                ${window.DAMMPULSE_API_URL}
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-slate-600 font-bold">Conexión con Railway:</span>
+                <span class="text-xs font-black text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-1 rounded">ONLINE (200 OK)</span>
+              </div>
+              <button onclick="showToast('Verificando latencia de API... 42ms')" class="w-full bg-slate-900 text-white text-xs font-black py-2.5 rounded-xl">Probar Conexión</button>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border-2 border-slate-200 space-y-4">
+              <h3 class="font-black text-slate-900 text-base">Gestión de Accesos</h3>
+              <div class="space-y-2">
+                <div class="flex justify-between items-center p-2.5 bg-slate-100 rounded-lg text-xs border border-slate-200">
+                  <div>
+                    <p class="font-black text-slate-900">Tarik (Tú)</p>
+                    <p class="text-slate-500 font-semibold">tarik@damm.es</p>
+                  </div>
+                  <span class="text-damm-red font-black bg-red-100 border border-damm-red px-2 py-0.5 rounded">Admin</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `
+    };
+
+    // Navegación interactiva
+    function switchView(viewName) {
+      state.currentView = viewName;
+      const viewContainer = document.getElementById('view');
+      const sectionTitle = document.getElementById('current-section');
+
+      document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.dataset.view === viewName) {
+          link.classList.add('active');
+          sectionTitle.textContent = link.innerText.replace(/[⌂▦⌗◉▤✳✦✧⇩]/g, '').trim();
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      if (views[viewName]) {
+        viewContainer.innerHTML = views[viewName]();
+      }
+
+      if (viewName === 'home') {
+        renderChart();
+      } else if (viewName === 'qr') {
+        renderCustomQR();
+      }
+
+      closeSidebar();
+    }
+
+    // Chart.js render plano
+    function renderChart() {
+      const ctx = document.getElementById('chart-oee');
+      if (!ctx) return;
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Env. Latas 1', 'Fermentación F-04', 'Pasteurizador P-02', 'Etiquetadora K8'],
+          datasets: [{
+            label: 'OEE %',
+            data: [89.2, 94.0, 0.0, 64.5],
+            backgroundColor: ['#C8102E', '#10b981', '#f59e0b', '#ef4444'],
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { max: 100, min: 0 } }
+        }
+      });
+    }
+
+    // Generador QR
+    function renderCustomQR() {
+      const qrContainer = document.getElementById('qrcode-container');
+      const inputId = document.getElementById('qr-input-id')?.value || 'DAMM-EQ';
+      const inputName = document.getElementById('qr-input-name')?.value || 'Equipo';
+      
+      if (!qrContainer) return;
+      qrContainer.innerHTML = '';
+      new QRCode(qrContainer, {
+        text: `https://damm.es/equipment/${inputId}`,
+        width: 120,
+        height: 120,
+        colorDark: "#C8102E",
+        colorLight: "#ffffff"
+      });
+
+      document.getElementById('qr-preview-title').textContent = inputId;
+      document.getElementById('qr-preview-desc').textContent = inputName;
+    }
+
+    function generateMachineQR(id, name) {
+      switchView('qr');
+      setTimeout(() => {
+        document.getElementById('qr-input-id').value = id;
+        document.getElementById('qr-input-name').value = name;
+        renderCustomQR();
+      }, 50);
+    }
+
+    // Chatbot
+    function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      appendChatMessage('user', text);
+      input.value = '';
+
+      setTimeout(() => {
+        let reply = "Entendido. He registrado la consulta en la bitácora industrial. ¿Deseas notificar al supervisor de turno?";
+        if (text.toLowerCase().includes('404') || text.toLowerCase().includes('error')) {
+          reply = "El error E-404 en la etiquetadora Krones corresponde a la desalineación de la fotocélula de entrada. Limpie el lente con alcohol isopropílico y reajuste a 12mm del sensor.";
+        } else if (text.toLowerCase().includes('cip') || text.toLowerCase().includes('limpieza')) {
+          reply = "El protocolo CIP requiere sosa cáustica al 2.5% a 80°C durante 30 min, seguido de enjuague de agua purificada hasta alcanzar pH neutro.";
+        } else if (text.toLowerCase().includes('oee')) {
+          reply = "El OEE actual de la Línea de Envasado 1 es del 89.2%, superando la meta del turno de 85%.";
+        }
+        appendChatMessage('bot', reply);
+      }, 700);
+    }
+
+    function sendPresetPrompt(text) {
+      document.getElementById('chat-input').value = text;
+      handleChatSubmit(new Event('submit'));
+    }
+
+    function appendChatMessage(sender, text) {
+      const container = document.getElementById('chat-messages');
+      const isBot = sender === 'bot';
+      const div = document.createElement('div');
+      div.className = `flex gap-3 items-start ${isBot ? '' : 'flex-row-reverse'}`;
+      div.innerHTML = `
+        <div class="w-8 h-8 rounded-full ${isBot ? 'bg-damm-red text-damm-gold border-2 border-damm-gold' : 'bg-slate-900 text-damm-gold'} text-xs font-black flex items-center justify-center shrink-0">
+          ${isBot ? 'DAM' : 'TA'}
+        </div>
+        <div class="${isBot ? 'bg-white rounded-tl-none border-2 border-slate-200 text-slate-800' : 'bg-damm-red text-white rounded-tr-none border-2 border-damm-gold'} p-3.5 rounded-2xl text-xs font-medium max-w-md">
+          ${text}
+        </div>
+      `;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function clearChat() {
+      document.getElementById('chat-messages').innerHTML = '';
+    }
+
+    // Modal Incidencias Plano
+    function openNewIncidentModal() {
+      const modalRoot = document.getElementById('modal-root');
+      modalRoot.innerHTML = `
+        <div class="fixed inset-0 bg-slate-900/80 z-50 flex items-center justify-center p-4">
+          <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4 border-4 border-damm-red">
+            <h3 class="text-lg font-black text-slate-900 font-serif">Reportar Incidencia Técnica</h3>
+            <div class="space-y-3 text-xs">
+              <div>
+                <label class="font-black text-slate-800 block mb-1">Título de la Incidencia</label>
+                <input type="text" id="inc-title" placeholder="Ej: Fuga de presión en válvula V-12" class="w-full border-2 border-slate-300 p-2.5 rounded-xl font-bold outline-none focus:border-damm-red">
+              </div>
+              <div>
+                <label class="font-black text-slate-800 block mb-1">Equipo Afectado</label>
+                <select id="inc-machine" class="w-full border-2 border-slate-300 p-2.5 rounded-xl font-bold outline-none focus:border-damm-red">
+                  ${state.machines.map(m => `<option value="${m.id}">${m.id} - ${m.name}</option>`).join('')}
+                </select>
+              </div>
+              <div>
+                <label class="font-black text-slate-800 block mb-1">Prioridad</label>
+                <select id="inc-priority" class="w-full border-2 border-slate-300 p-2.5 rounded-xl font-bold outline-none focus:border-damm-red">
+                  <option>Alta</option>
+                  <option>Media</option>
+                  <option>Baja</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex gap-2 pt-2">
+              <button onclick="closeModal()" class="flex-1 bg-slate-200 text-slate-800 font-black py-2.5 rounded-xl text-xs">Cancelar</button>
+              <button onclick="saveIncident()" class="flex-1 bg-damm-red text-white font-black py-2.5 rounded-xl text-xs hover:bg-damm-darkred transition border-2 border-damm-gold">Guardar Parte</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function closeModal() {
+      document.getElementById('modal-root').innerHTML = '';
+    }
+
+    function saveIncident() {
+      const title = document.getElementById('inc-title').value;
+      const machine = document.getElementById('inc-machine').value;
+      const priority = document.getElementById('inc-priority').value;
+
+      if (!title) return alert('Por favor indique un título');
+
+      state.incidents.unshift({
+        id: `INC-2026-0${Math.floor(Math.random()*90 + 10)}`,
+        title,
+        machine,
+        priority,
+        status: 'Abierta',
+        date: 'Ahora',
+        reporter: 'Tarik'
+      });
+
+      closeModal();
+      showToast('Incidencia registrada con éxito');
+      if (state.currentView === 'incidents' || state.currentView === 'home') {
+        switchView(state.currentView);
+      }
+    }
+
+    // Sidebar móvil
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+
+    function openSidebar() {
+      sidebar.classList.remove('-translate-x-full');
+      sidebarBackdrop.classList.remove('hidden');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.add('-translate-x-full');
+      sidebarBackdrop.classList.add('hidden');
+    }
+
+    menuToggle.addEventListener('click', openSidebar);
+    sidebarBackdrop.addEventListener('click', closeSidebar);
+
+    document.querySelectorAll('.main-nav .nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        switchView(link.dataset.view);
+      });
+    });
+
+    document.getElementById('btn-logout').addEventListener('click', () => {
+      showToast('Cierre de sesión simulado.');
+    });
+
+    // Iniciar app
+    window.addEventListener('load', () => {
+      switchView('home');
+    });
   </script>
 </body>
 </html>
