@@ -1,8 +1,63 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
-  <title id="title">Damm+</title>
-  <rect width="512" height="512" fill="#B8040B"/>
-  <g fill="#fff" font-family="Old English Text MT, UnifrakturCook, Cloister Black, Georgia, serif" font-weight="900">
-    <text x="45" y="315" font-size="188" letter-spacing="-14">Damm</text>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DammPulse logo">
+  <rect width="512" height="512" fill="#E30613"/>
+
+  <path fill="#FFFFFF" fill-rule="evenodd" d="
+    M 157 53
+    C 119 58 84 79 62 112
+    C 42 143 34 177 34 216
+    L 34 296
+    C 34 326 40 353 52 378
+    C 68 410 95 436 133 448
+    C 166 459 212 462 250 462
+    L 277 462
+    C 344 462 396 430 431 381
+    C 456 345 470 301 470 246
+    C 470 181 454 132 426 96
+    C 399 62 359 40 309 40
+    L 157 40
+    Z
+    M 179 101
+    C 163 106 148 114 138 127
+    C 124 145 118 169 118 213
+    L 118 299
+    C 118 341 124 366 139 385
+    C 156 406 183 418 225 418
+    L 267 418
+    C 327 418 367 390 389 341
+    C 399 319 405 291 405 255
+    C 405 188 377 141 320 121
+    C 292 112 236 108 204 108
+    L 179 101
+    Z
+  "/>
+
+  <path fill="#E30613" fill-rule="evenodd" d="
+    M 171 149
+    C 168 150 164 151 160 153
+    L 160 351
+    C 164 358 174 365 188 371
+    C 201 377 217 380 239 380
+    L 267 380
+    C 314 380 349 360 370 326
+    C 387 298 394 271 394 249
+    C 394 209 370 177 325 160
+    C 294 147 257 141 217 141
+    C 203 141 188 143 171 149
+    Z
+    M 198 186
+    C 212 180 230 177 252 177
+    L 294 177
+    C 328 177 351 191 364 217
+    C 374 237 377 255 377 276
+    C 377 314 355 338 315 345
+    C 288 350 258 350 226 349
+    C 213 349 203 348 194 344
+    L 194 187
+    Z
+  "/>
+
+  <g fill="#F5D100">
+    <rect x="330" y="125" width="24" height="155" rx="8"/>
+    <rect x="270" y="183" width="145" height="24" rx="8"/>
   </g>
-  <path fill="#ffd400" d="M422 204h44v42h42v44h-42v42h-44v-42h-42v-44h42z"/>
 </svg>
