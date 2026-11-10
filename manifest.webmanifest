@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "DammPulse 360",
-  "short_name": "DammPulse",
+  "name": "DAMM+ 360",
+  "short_name": "DAMM+",
   "description": "Plataforma de conocimiento, formación y soporte industrial",
   "start_url": "./",
   "scope": "./",
@@ -11,7 +11,7 @@
   "theme_color": "#E50914",
   "icons": [
     {
-      "src": "icon.svg?v=20261110-original-browser-icon",
+      "src": "icon.svg?v=20261110-damm-plus-icon",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
