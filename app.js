@@ -142,9 +142,11 @@ document.addEventListener("submit",e=>{if(e.target.id!=="qr-generator-form")retu
 
 if(currentUser())render();else renderAuth();
 let deferredInstallPrompt=null;
-window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstallPrompt=e;const b=$("#install-app");if(b)b.hidden=false});
-const installButton=$("#install-app");if(installButton){installButton.hidden=false;installButton.addEventListener("click",async()=>{if(deferredInstallPrompt){deferredInstallPrompt.prompt();await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;return}const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);toast(ios?"En Safari: Compartir → Añadir a pantalla de inicio.":"En Chrome: menú ⋮ → Instalar aplicación o Añadir a pantalla de inicio.");});}
-if("serviceWorker"in navigator&&location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstallPrompt=e;const b=$("#install-app");if(b){b.hidden=false;b.disabled=false;b.textContent="Instalar app ↓"}});
+window.addEventListener("appinstalled",()=>{deferredInstallPrompt=null;const b=$("#install-app");if(b)b.hidden=true;toast("DammPulse se ha instalado correctamente")});
+const installButton=$("#install-app");
+if(installButton){installButton.hidden=false;installButton.addEventListener("click",async()=>{if(deferredInstallPrompt){const promptEvent=deferredInstallPrompt;deferredInstallPrompt=null;installButton.disabled=true;try{await promptEvent.prompt();const choice=await promptEvent.userChoice;if(choice?.outcome==="accepted")toast("Instalación iniciada");}catch(error){toast("No se pudo iniciar la instalación. Actualiza la página y vuelve a intentarlo.");}finally{installButton.disabled=false;}return}const ua=navigator.userAgent;const ios=/iphone|ipad|ipod/i.test(ua);const isEdge=/edg\//i.test(ua);toast(ios?"En Safari: Compartir → Añadir a pantalla de inicio.":isEdge?"En Edge: menú ⋯ → Aplicaciones → Instalar este sitio como una aplicación.":"En Chrome: menú ⋮ → Instalar aplicación o Añadir a pantalla de inicio.");});}
+if("serviceWorker"in navigator&&location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(error=>console.warn("DammPulse: no se pudo registrar el service worker",error)));
 
 
 function installationsPage(){
