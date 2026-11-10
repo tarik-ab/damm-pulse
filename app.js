@@ -153,9 +153,9 @@ function installationsPage(){
   {id:"linux",icon:"▱",name:"Linux",format:"AppImage",detail:"Aplicación para Linux x64. Descarga y ejecuta el archivo AppImage.",status:"DESCARGA DIRECTA",url:"https://github.com/tarik-ab/damm-pulse/releases/download/v1.0.0/DammPulse-Linux-x64.AppImage"},
   {id:"android",icon:"▣",name:"Android",format:"APK",detail:"Instalador para móviles y tabletas Android.",status:"DESCARGA DIRECTA",url:"https://github.com/tarik-ab/dammpulse-mobile./releases/download/v1.0.0/DammPulse-Android.apk"}
  ];
- return head("DAMMPULSE 360 / DESCARGAS","Instalaciones","Descarga DammPulse directamente. Pulsa el botón de tu sistema para obtener el instalador.")+
+ return head("DAMMPULSE 360 / DESCARGAS","Instalaciones","El botón descarga el archivo. Después ábrelo para completar la instalación en tu dispositivo.")+
  '<div class="install-grid">'+cards.map(c=>'<article class="panel install-card"><div class="install-card-top"><span class="install-icon">'+c.icon+'</span><span class="install-status ready">'+c.status+'</span></div><p class="eyebrow">'+c.format+'</p><h2>'+c.name+'</h2><p>'+c.detail+'</p><a class="btn primary install-download" href="'+c.url+'" target="_blank" rel="noopener" download>↓ Descargar '+c.format+'</a></article>').join("")+'</div>'+
- '<div class="safety-note">Los botones descargan el instalador desde la versión oficial de DammPulse. En Android puede ser necesario autorizar la instalación desde esta fuente. En Linux, si hace falta, concede permiso de ejecución al AppImage.</div>';
+ '<div class="safety-note"><strong>Importante:</strong> pulsar Descargar no instala la aplicación automáticamente. En Windows, abre el .exe descargado y sigue el asistente. En Linux, permite ejecutar el AppImage y ábrelo. En Android, abre el APK descargado y confirma la instalación; quizá debas autorizar temporalmente esa fuente.</div>';
 }
 
 function home(){
