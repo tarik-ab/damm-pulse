@@ -493,3 +493,7 @@ input:focus,select:focus,textarea:focus,.select:focus,.field input:focus,.field 
 .install-card h2{font:800 24px Manrope;margin:2px 0 8px}
 .install-card>p:not(.eyebrow){color:var(--muted);font-size:12px;line-height:1.7;min-height:42px}
 .install-download{margin-top:auto;align-self:flex-start}
+
+/* Acceso permanente a instaladores desde cualquier sección */
+.install-entry{background:#B8040B!important;border-color:#B8040B!important;color:#fff!important;white-space:nowrap}
+@media(max-width:560px){.top-actions{gap:7px}.install-entry{font-size:9px;padding:8px 9px}.demo-tag{display:none}}
