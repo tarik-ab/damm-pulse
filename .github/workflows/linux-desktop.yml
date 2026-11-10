@@ -54,7 +54,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dammpulse-windows-x64
-          path: desktop/dist/*.exe
+          path: |
+            desktop/dist/*.exe
+            desktop/dist/*.zip
           if-no-files-found: error
           retention-days: 14
   publish-release:
@@ -81,6 +83,11 @@ jobs:
           file="$(find release -maxdepth 1 -type f -name '*.exe' | head -n 1)"
           test -n "$file"
           cp "$file" release/DammPulse-Setup.exe
+      - name: Rename Windows portable ZIP
+        run: |
+          file="$(find release -maxdepth 1 -type f -name '*.zip' | head -n 1)"
+          test -n "$file"
+          cp "$file" release/DammPulse-Windows-Portable.zip
       - name: Publish permanent downloads
         uses: softprops/action-gh-release@v2
         with:
@@ -89,4 +96,5 @@ jobs:
           make_latest: true
           files: |
             release/DammPulse-Setup.exe
+            release/DammPulse-Windows-Portable.zip
             release/DammPulse-Linux-x64.AppImage
