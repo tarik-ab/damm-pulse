@@ -12,7 +12,9 @@
   },
   "devDependencies": {
     "electron": "^39.0.0",
-    "electron-builder": "^26.0.12"
+    "electron-builder": "^26.0.12",
+    "sharp": "^0.34.5",
+    "png-to-ico": "^3.0.1"
   },
   "build": {
     "appId": "com.dammpulse.desktop",
@@ -23,20 +25,23 @@
     "files": [
       "main.cjs",
       "preload.cjs",
-      "package.json"
+      "package.json",
+      "icon.png"
     ],
     "linux": {
       "target": [
         "AppImage"
       ],
       "category": "Office",
-      "artifactName": "DammPulse-360-${version}-${arch}.${ext}"
+      "artifactName": "DammPulse-360-${version}-${arch}.${ext}",
+      "icon": "icon.png"
     },
     "win": {
       "target": [
         "nsis"
       ],
-      "artifactName": "DammPulse-360-Setup-${version}-${arch}.${ext}"
+      "artifactName": "DammPulse-360-Setup-${version}-${arch}.${ext}",
+      "icon": "icon.ico"
     },
     "nsis": {
       "oneClick": false,
