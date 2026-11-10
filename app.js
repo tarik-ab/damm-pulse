@@ -149,13 +149,13 @@ if("serviceWorker"in navigator&&location.protocol.startsWith("http"))window.addE
 
 function installationsPage(){
  const cards=[
-  {id:"windows",icon:"▰",name:"Windows · Desktop D+",format:"EXE",detail:"Versión Desktop actualizada con el nuevo icono D+ para Windows 10/11 de 64 bits.",status:"DESKTOP D+ ACTUALIZADO",url:"https://github.com/tarik-ab/damm-pulse/releases/download/v1.0.0/DammPulse-Setup.exe?download=1"},
+  {id:"windows",icon:"▰",name:"Windows · Portable D+",format:"ZIP",detail:"Descarga el ZIP, extráelo y abre DammPulse 360.exe. No necesita asistente de instalación.",status:"PORTABLE · EXTRAER Y ABRIR",url:"https://github.com/tarik-ab/damm-pulse/releases/download/v1.0.0/DammPulse-Windows-Portable.zip?download=1"},
   {id:"linux",icon:"▱",name:"Linux · Desktop D+",format:"AppImage",detail:"Versión Desktop actualizada con el nuevo icono D+ para Linux x64.",status:"DESKTOP D+ ACTUALIZADO",url:"https://github.com/tarik-ab/damm-pulse/releases/download/v1.0.0/DammPulse-Linux-x64.AppImage?download=1"},
   {id:"android",icon:"▣",name:"Android",format:"APK",detail:"Instalador para móviles y tabletas Android.",status:"DESCARGA DIRECTA",url:"https://github.com/tarik-ab/dammpulse-mobile./releases/download/v1.0.0/DammPulse-Android.apk"}
  ];
- return head("DAMMPULSE 360 / DESCARGAS","Instalaciones","El botón descarga el archivo. Después ábrelo para completar la instalación en tu dispositivo.")+
+ return head("DAMMPULSE 360 / DESCARGAS","Instalaciones","Descarga el paquete correspondiente. En Windows, extrae el ZIP y abre DammPulse 360.exe; no hace falta instalarlo.")+
  '<div class="install-grid">'+cards.map(c=>'<article class="panel install-card"><div class="install-card-top"><span class="install-icon">'+c.icon+'</span><span class="install-status ready">'+c.status+'</span></div><p class="eyebrow">'+c.format+'</p><h2>'+c.name+'</h2><p>'+c.detail+'</p><a class="btn primary install-download" href="'+c.url+'" target="_blank" rel="noopener" download>↓ Descargar '+c.format+'</a></article>').join("")+'</div>'+
- '<div class="safety-note"><strong>Importante:</strong> pulsar Descargar no instala la aplicación automáticamente. En Windows, abre el .exe descargado y sigue el asistente. En Linux, permite ejecutar el AppImage y ábrelo. En Android, abre el APK descargado y confirma la instalación; quizá debas autorizar temporalmente esa fuente.</div>';
+ '<div class="safety-note"><strong>Importante:</strong> pulsar Descargar no instala la aplicación automáticamente. En Windows, extrae el ZIP y abre DammPulse 360.exe. En Linux, permite ejecutar el AppImage y ábrelo. En Android, abre el APK descargado y confirma la instalación; quizá debas autorizar temporalmente esa fuente.</div>';
 }
 
 function home(){
