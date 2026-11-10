@@ -1,4 +1,4 @@
-# DammPulse
+# DAMM+
 
 Prototipo académico de una plataforma de conocimiento y formación industrial.
 
