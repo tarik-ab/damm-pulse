@@ -26,7 +26,8 @@
       "main.cjs",
       "preload.cjs",
       "package.json",
-      "icon.png"
+      "icon.png",
+      "icon.ico"
     ],
     "linux": {
       "target": [
