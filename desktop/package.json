@@ -8,7 +8,7 @@
   "scripts": {
     "start": "electron .",
     "dist:linux": "electron-builder --linux AppImage",
-    "dist:windows": "electron-builder --win nsis"
+    "dist:windows": "electron-builder --win nsis zip"
   },
   "devDependencies": {
     "electron": "^39.0.0",
@@ -39,9 +39,10 @@
     },
     "win": {
       "target": [
-        "nsis"
+        "nsis",
+        "zip"
       ],
-      "artifactName": "DammPulse-360-Setup-${version}-${arch}.${ext}",
+      "artifactName": "DammPulse-360-${version}-${arch}.${ext}",
       "icon": "icon.ico"
     },
     "nsis": {
